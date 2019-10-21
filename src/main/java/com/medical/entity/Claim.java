@@ -41,5 +41,6 @@ public class Claim {
 	private String status;
 	private String comments;
 	private Integer approverId;
+	private Integer userId;
 
 }
