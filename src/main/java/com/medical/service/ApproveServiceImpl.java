@@ -64,11 +64,11 @@ public class ApproveServiceImpl implements ApproveService {
 
 		List<Claim> claim = claimRepo.findAllByOrderByPatientName();
 		claim.stream().forEach(c -> {
-			if (approverId == MedicalClaimConstants.APPROVER_ID) {
+			if (approverId.equals(MedicalClaimConstants.APPROVER_ID)) {
 				if (c.getApprStatus().equals(MedicalClaimConstants.PENDING)) {
 					ClaimResDto cl = new ClaimResDto();
 					BeanUtils.copyProperties(c, cl);
-					cl.setAppr1Status(c.getApprStatus());
+					cl.setApprStatus(c.getApprStatus());
 					Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
 					cl.setDiseaseName(disease.get().getDiseaseName());
 					cl.setLimitAmount(disease.get().getLimitAmount());
@@ -80,7 +80,7 @@ public class ApproveServiceImpl implements ApproveService {
 			} else {
 				ClaimResDto cl = new ClaimResDto();
 				BeanUtils.copyProperties(c, cl);
-				cl.setAppr1Status(c.getApprStatus());
+				cl.setApprStatus(c.getApprStatus());
 				Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
 				cl.setDiseaseName(disease.get().getDiseaseName());
 				cl.setLimitAmount(disease.get().getLimitAmount());

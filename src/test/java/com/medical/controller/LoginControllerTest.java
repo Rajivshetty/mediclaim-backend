@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.medical.controller;
 
 import static org.junit.Assert.assertEquals;
@@ -14,8 +17,12 @@ import com.medical.dto.LoginResponseDTO;
 import com.medical.service.LoginServiceImpl;
 import com.medical.util.MedicalClaimConstants;
 
+/**
+ * @author User1
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
-class LoginControllerTest {
+public class LoginControllerTest {
 
 	@Mock
 	LoginServiceImpl loginServiceImpl;
@@ -40,4 +47,5 @@ class LoginControllerTest {
 		LoginResponseDTO actualValue=loginServiceImpl.getAdminDetails(loginDTO);
 		assertEquals(loginResponseDTO.getStatusCode(), actualValue.getStatusCode());
 	}
+
 }

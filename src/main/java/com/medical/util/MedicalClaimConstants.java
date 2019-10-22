@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,7 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 public class MedicalClaimConstants {
 
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(MedicalClaimConstants.class);
+
 	private MedicalClaimConstants() {
 	}
 
@@ -73,7 +76,7 @@ public class MedicalClaimConstants {
 					"You successfully uploaded '" + file.getOriginalFilename() + "'");
 
 		} catch (IOException e) {
-
+			LOGGER.info("Exception");
 		}
 
 		return "redirect:/uploadStatus";
