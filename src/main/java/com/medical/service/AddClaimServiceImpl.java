@@ -81,7 +81,7 @@ public class AddClaimServiceImpl implements AddClaimService {
 
 					if (claim.getClaimAmount() <= disease.getLimitAmount()) {
 
-						claim.setStatus(MedicalClaimConstants.CLAIM_REQUEST_STATUS);
+						claim.setApprStatus(MedicalClaimConstants.CLAIM_REQUEST_STATUS);
 						claim.setClaimReqDate(LocalDate.now());
 						claimRepository.save(claim);
 						responseDTO.setMessage(MedicalClaimConstants.CLAIM_REQUEST_PASS);
