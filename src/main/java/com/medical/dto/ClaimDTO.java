@@ -1,14 +1,13 @@
 /**
  * 
  */
-package com.medical.entity;
+package com.medical.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,32 +15,36 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * @author user1
+ * @author shiva
  *
  */
-
-@Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Claim {
+public class ClaimDTO implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Integer claimId;
 	private String patientName;
 	private Integer claimNo;
 	private Integer diseaseId;
+	@NotNull
+	@NotEmpty
 	private LocalDate admissionDate;
+	@NotNull
+	@NotEmpty
 	private LocalDate dischargedDate;
 	private Integer hospitalId;
+
+	@NotEmpty
 	private Double claimAmount;
 	private Integer userId;
-	private Integer approverId;
-	private String apprStatus;
 	private String comments;
 	private String status;
-	private LocalDate claimReqDate;
 
 }

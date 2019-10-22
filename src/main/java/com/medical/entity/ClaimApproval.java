@@ -1,7 +1,6 @@
-/**
- * 
- */
 package com.medical.entity;
+
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,22 +12,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author shiva
- *
- */
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Role {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer roleId;
-	private String role;
-	private String adminName;
-	private String adminPassword;
-
+public class ClaimApproval {
+		
+		@Id
+		@GeneratedValue(strategy = GenerationType.AUTO)
+		private Integer claimApprovalId;
+		private Integer calimId;
+		private Integer approverId;
+		private LocalDate approvedDate;
+		private String status;
+		private String comments;
+		
 }
