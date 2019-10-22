@@ -26,19 +26,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Claim {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	private Integer claimId;
 	private String patientName;
 	private Integer claimNo;
 	private Integer diseaseId;
 	private LocalDate admissionDate;
 	private LocalDate dischargedDate;
-	private String hospitalName;
+	private Integer hospitalId;
 	private Double claimAmount;
-
-	private String status;
+	private Integer userId;
+	private String apprStatus;
 	private String comments;
 	private Integer approverId;
 

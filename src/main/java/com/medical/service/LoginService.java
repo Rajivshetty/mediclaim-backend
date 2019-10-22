@@ -8,6 +8,6 @@ import com.medical.dto.LoginResponseDTO;
 @Service
 public interface LoginService {
 	
-	public LoginResponseDTO getUserDetails(LoginDTO loginDTO);
+	public LoginResponseDTO getAdminDetails(LoginDTO loginDTO);
 
 }

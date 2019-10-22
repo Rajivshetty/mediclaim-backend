@@ -7,28 +7,29 @@ import static com.medical.util.MedicalClaimConstants.LOGIN_SUCCESS_CODE;
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
+import com.medical.entity.Role;
 import com.medical.entity.User;
 import com.medical.exception.MedicalClaimException;
-import com.medical.repository.UserRepository;
+import com.medical.repository.LoginRepository;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author shiva
  *
  */
 @Service
+@Slf4j
 public class LoginServiceImpl implements LoginService {
 
-	private static final Logger lOGGER = LoggerFactory.getLogger(LoginServiceImpl.class);
 
 	@Autowired
-	UserRepository userRepository;
+	LoginRepository loingRepository;
 
 	/**
 	 * @param LoginDTO
@@ -37,14 +38,14 @@ public class LoginServiceImpl implements LoginService {
 	 *         correct or in correct
 	 */
 	@Override
-	public LoginResponseDTO getUserDetails(LoginDTO loginDTO) {
+	public LoginResponseDTO getAdminDetails(LoginDTO loginDTO) {
 
-		lOGGER.info("Inside LoginServiceImpl");
+		log.info("Inside LoginServiceImpl");
 
-		String userName = loginDTO.getUserEmail();
-		String password = loginDTO.getPassword();
+		String userName = loginDTO.getAdminName();
+		String password = loginDTO.getAdminPassword();
 
-		lOGGER.info("userName:{} Password:{}", userName, password);
+		log.info("userName:{} Password:{}", userName, password);
 
 		LoginResponseDTO loginResponseDTO = null;
 
@@ -55,21 +56,19 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		else {
-			Optional<User> userList = userRepository.findByUserEmailAndPassword(userName, password);
-
-			if (!(userList.isPresent())) {
-				throw new MedicalClaimException(LOGIN_FAILURE);
-
+			Optional<Role> role = loingRepository.findByAdminNameAndAdminPassword(userName, password);
+			if (role.isPresent()) {
+				loginResponseDTO = new LoginResponseDTO();
+				loginResponseDTO.setAdminName(role.get().getAdminName());
+				loginResponseDTO.setRoleId(role.get().getRoleId());
+				loginResponseDTO.setMessage(LOGIN_SUCCESS);
+				loginResponseDTO.setStatusCode(LOGIN_SUCCESS_CODE);
+				
 			}
 
 			else {
 
-				loginResponseDTO = new LoginResponseDTO();
-				User user = userList.get();
-				loginResponseDTO.setUserName(user.getUserName());
-				loginResponseDTO.setUserId(user.getUserId());
-				loginResponseDTO.setMessage(LOGIN_SUCCESS);
-				loginResponseDTO.setStatusCode(LOGIN_SUCCESS_CODE);
+				throw new MedicalClaimException(LOGIN_FAILURE);
 
 			}
 
