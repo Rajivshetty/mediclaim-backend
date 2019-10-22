@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.medical.service;
 
 import static org.junit.Assert.assertEquals;
@@ -17,10 +20,13 @@ import com.medical.dto.LoginResponseDTO;
 import com.medical.entity.Role;
 import com.medical.repository.LoginRepository;
 
-
+/**
+ * @author User1
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
-class LoginServiceImplTest {
-	
+public class LoginServiceImplTest {
+
 	
 	@Mock
 	LoginRepository loginRepository;

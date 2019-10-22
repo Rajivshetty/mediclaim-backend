@@ -4,6 +4,7 @@
 package com.medical.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -42,6 +43,10 @@ public class PolicyServiceImplTest {
 	PolicyRequestDto policyRequestDto = null;
 	PolicyResponseDto policyResponseDto = null;
 
+	/**
+	 *
+	 * Initial set up
+	 */
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
@@ -63,6 +68,11 @@ public class PolicyServiceImplTest {
 		policyResponseDto.setStatusCode(MedicalClaimConstants.POLICY_STATUS_CODE);
 
 	}
+	
+	/**
+	 * @apiNote test case for claimService() method
+	 * @return PolicyResponseDto
+	 */
 
 	@Test
 	public void testClaimService() {
@@ -72,11 +82,19 @@ public class PolicyServiceImplTest {
 		assertEquals(policyResponseDto.getStatusCode(), actualResponseDto.getStatusCode());
 
 	}
+	
+	
+	/**
+	 * @apiNote negative test case for claimService() method
+	 * @throws PolicyNotFound
+	 */
 
 	@Test(expected = MedicalClaimException.class)
 	public void testClaimServiceException() {
-
-		policyServiceImpl.claimService(policyRequestDto);
+		
+		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenThrow(MedicalClaimException.class);
+		PolicyResponseDto policyResponse=policyServiceImpl.claimService(policyRequestDto);
+		assertNotNull(policyResponse);
 
 	}
 
