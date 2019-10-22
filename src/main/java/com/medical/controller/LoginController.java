@@ -1,7 +1,7 @@
 package com.medical.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,30 +15,31 @@ import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
 import com.medical.service.LoginService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * @author shiva
+ * @author mahesh
  *
  */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = { "*", "*/" }, allowedHeaders = { "*", "*/" })
-
+@Slf4j
 public class LoginController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
 	LoginService loginService;
 
 	/**
-	 * @param LoginDTO
+	 * This method is used for Admin login to approve claim
 	 * 
-	 * This method is used for login
+	 * @param LoginDTO
 	 */
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponseDTO> getUser(@RequestBody LoginDTO loginDTO) {
-		LOGGER.info("LoginController.class");
-		return new ResponseEntity<>(loginService.getUserDetails(loginDTO), HttpStatus.OK);
+	public ResponseEntity<LoginResponseDTO> getAdmin(@NotNull @RequestBody LoginDTO loginDTO) {
+		log.debug("LoginController.class");
+		return new ResponseEntity<>(loginService.getAdminDetails(loginDTO), HttpStatus.OK);
 
 	}
 

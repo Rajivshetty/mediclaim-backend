@@ -17,6 +17,7 @@ import com.medical.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public Optional<User> findByUserEmailAndPassword(String userEmail, String password);
+	Optional<User> findByPolicyNo(Integer policyNo);
 
 
 }

@@ -26,9 +26,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Claim {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	private Integer claimId;
 	private String patientName;
 	private Integer claimNo;
@@ -38,6 +38,8 @@ public class Claim {
 	private Integer hospitalId;
 	private Double claimAmount;
 	private Integer userId;
+	private Integer approverId;
+	private String apprStatus;
 	private String comments;
 	private String status;
 	private LocalDate claimReqDate;
