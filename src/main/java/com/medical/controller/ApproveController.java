@@ -10,11 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.medical.dto.ApproveReqDto;
 import com.medical.dto.ApproveResDto;
 import com.medical.dto.ClaimResDto;
 import com.medical.service.ApproveService;
@@ -57,10 +58,10 @@ public class ApproveController {
 	 * @param comment
 	 * @return ApproveResDto
 	 */
-	@PutMapping("/approvers/{approverId}/claims/{claimId}")
-	public ResponseEntity<ApproveResDto> approveClaim(@PathVariable Integer approverId, @PathVariable Integer claimId, @RequestParam String status, @RequestParam String comment){
+	@PostMapping("/approvers")
+	public ResponseEntity<ApproveResDto> approveClaim(@NotNull @RequestBody ApproveReqDto approveReqDto){
 		log.debug("approveClaim method in ApproveController");
-		return new ResponseEntity<>(approveService.approveClaim(approverId,claimId,status,comment),HttpStatus.OK);
+		return new ResponseEntity<>(approveService.approveClaim(approveReqDto),HttpStatus.OK);
 	}
 	
 }

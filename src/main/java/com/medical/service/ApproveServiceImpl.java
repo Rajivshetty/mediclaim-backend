@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.medical.dto.ApproveReqDto;
 import com.medical.dto.ApproveResDto;
 import com.medical.dto.ClaimResDto;
 import com.medical.entity.Claim;
@@ -61,7 +62,7 @@ public class ApproveServiceImpl implements ApproveService {
 
 		List<ClaimResDto> claimList = new ArrayList<>();
 
-		List<Claim> claim = claimRepo.findAll();
+		List<Claim> claim = claimRepo.findAllByOrderByPatientName();
 		claim.stream().forEach(c -> {
 			if (approverId == MedicalClaimConstants.APPROVER_ID) {
 				if (c.getApprStatus().equals(MedicalClaimConstants.PENDING)) {
@@ -104,21 +105,21 @@ public class ApproveServiceImpl implements ApproveService {
 	 * @return ApproveResDto
 	 */
 	@Override
-	public ApproveResDto approveClaim(Integer approverId, Integer claimId, String status, String comment) {
+	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) {
 		log.debug("approveClaim method in ApproveServiceImpl class");
-		Optional<Claim> claim = claimRepo.findByClaimId(claimId);
+		Optional<Claim> claim = claimRepo.findByClaimId(approveReqDto.getClaimId());
 		if (claim.isPresent()) {
 
-			claim.get().setApprStatus(status);
-			claim.get().setComments(comment);
-			claim.get().setApproverId(approverId);
+			claim.get().setApprStatus(approveReqDto.getStatus());
+			claim.get().setComments(approveReqDto.getComment());
+			claim.get().setApproverId(approveReqDto.getApproverId());
 			claimRepo.save(claim.get());
 
 			ClaimApproval claimApproval = new ClaimApproval();
-			claimApproval.setApproverId(approverId);
-			claimApproval.setCalimId(claimId);
-			claimApproval.setComments(comment);
-			claimApproval.setStatus(status);
+			claimApproval.setApproverId(approveReqDto.getApproverId());
+			claimApproval.setCalimId(approveReqDto.getClaimId());
+			claimApproval.setComments(approveReqDto.getComment());
+			claimApproval.setStatus(approveReqDto.getStatus());
 			claimApproval.setApprovedDate(LocalDate.now());
 			claimApprovalRepo.save(claimApproval);
 

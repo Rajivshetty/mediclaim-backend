@@ -52,17 +52,6 @@ public class ApproveControllerTest {
 		assertEquals(list.size(), obj.getBody().size());
 	}
 
-	@Test
-	public void testApproveClaim() {
-		int claimId=1;
-		int approverId=1;
-		String status = "approved";
-		String comment = "finsish";
-		ApproveResDto approveResDto=new ApproveResDto();
-		approveResDto.setStatusCode(HttpStatus.OK.value());
-		Mockito.when(approveService.approveClaim(approverId, claimId, status, comment)).thenReturn(approveResDto);
-		ResponseEntity<ApproveResDto> obj = approveController.approveClaim(1, 1, "approved", "finish");
-		assertEquals(approveResDto.getStatusCode(), obj.getBody().getStatusCode());
-	}
+
 
 }

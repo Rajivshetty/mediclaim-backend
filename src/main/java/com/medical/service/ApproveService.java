@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Service;
 
+import com.medical.dto.ApproveReqDto;
 import com.medical.dto.ApproveResDto;
 import com.medical.dto.ClaimResDto;
 
@@ -19,6 +20,6 @@ public interface ApproveService {
 
 	List<ClaimResDto> claimList(@NotNull Integer approverId);
 
-	ApproveResDto approveClaim(Integer approverId, Integer claimId, String status, String comment);
+	ApproveResDto approveClaim(ApproveReqDto approveReqDto);
 
 }
