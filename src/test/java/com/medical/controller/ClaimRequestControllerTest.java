@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.medical.controller;
 
 import static org.junit.Assert.assertEquals;
@@ -17,14 +20,18 @@ import com.medical.dto.ResponseDto;
 import com.medical.service.AddClaimServiceImpl;
 import com.medical.util.MedicalClaimConstants;
 
+/**
+ * @author User1
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
-public class ClaimRequestControllerTest2 {
+public class ClaimRequestControllerTest {
 
 	@Mock
-	AddClaimServiceImpl addClaimServiceImpl;
+	private AddClaimServiceImpl addClaimServiceImpl;
 
 	@InjectMocks
-	ClaimRequestController claimRequestController;
+	private ClaimRequestController claimRequestController;
 
 	@Test
 	public void testAddClaim() {
@@ -49,5 +56,6 @@ public class ClaimRequestControllerTest2 {
 		assertEquals(responseDTO.getStatusCode(), actualValue.getBody().getStatusCode());
 
 	}
+
 
 }
