@@ -20,7 +20,7 @@ import com.medical.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author shiva
+ * @author mahesh
  *
  */
 @RestController
@@ -34,7 +34,7 @@ public class LoginController {
 	LoginService loginService;
 
 	/**
-	 * This method is used for login
+	 * This method is used for Admin login to approve claim
 	 * 
 	 * @param LoginDTO
 	 */

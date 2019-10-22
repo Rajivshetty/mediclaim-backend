@@ -20,7 +20,8 @@ public class ClaimResDto {
 	private String hospitalName;
 	private Double claimAmount;
 	private Double limitAmount;
-    private String appr1Status1;
+    private String appr1Status;
     private String comments;
+    private Integer claimId;
 	
 }

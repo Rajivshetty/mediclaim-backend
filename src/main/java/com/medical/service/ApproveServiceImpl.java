@@ -67,23 +67,25 @@ public class ApproveServiceImpl implements ApproveService {
 				if (c.getApprStatus().equals(MedicalClaimConstants.PENDING)) {
 					ClaimResDto cl = new ClaimResDto();
 					BeanUtils.copyProperties(c, cl);
-					cl.setAppr1Status1(c.getApprStatus());
+					cl.setAppr1Status(c.getApprStatus());
 					Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
 					cl.setDiseaseName(disease.get().getDiseaseName());
 					cl.setLimitAmount(disease.get().getLimitAmount());
 					Optional<Hospital> hospital = hospitalRepo.findById(c.getHospitalId());
 					cl.setHospitalName(hospital.get().getHospitalName());
+					cl.setClaimId(c.getClaimId());
 					claimList.add(cl);
 				}
 			} else {
 				ClaimResDto cl = new ClaimResDto();
 				BeanUtils.copyProperties(c, cl);
-				cl.setAppr1Status1(c.getApprStatus());
+				cl.setAppr1Status(c.getApprStatus());
 				Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
 				cl.setDiseaseName(disease.get().getDiseaseName());
 				cl.setLimitAmount(disease.get().getLimitAmount());
 				Optional<Hospital> hospital = hospitalRepo.findById(c.getHospitalId());
 				cl.setHospitalName(hospital.get().getHospitalName());
+				cl.setClaimId(c.getClaimId());
 				claimList.add(cl);
 			}
 
@@ -106,10 +108,12 @@ public class ApproveServiceImpl implements ApproveService {
 		log.debug("approveClaim method in ApproveServiceImpl class");
 		Optional<Claim> claim = claimRepo.findByClaimId(claimId);
 		if (claim.isPresent()) {
+
 			claim.get().setApprStatus(status);
 			claim.get().setComments(comment);
 			claim.get().setApproverId(approverId);
 			claimRepo.save(claim.get());
+
 			ClaimApproval claimApproval = new ClaimApproval();
 			claimApproval.setApproverId(approverId);
 			claimApproval.setCalimId(claimId);
@@ -122,7 +126,7 @@ public class ApproveServiceImpl implements ApproveService {
 			throw new MedicalClaimException(MedicalClaimConstants.RECORD_NOT_FOUND);
 		}
 		ApproveResDto approveResDto = new ApproveResDto();
-		approveResDto.setMessage("updated successfully");
+		approveResDto.setMessage(MedicalClaimConstants.UPDATED);
 		approveResDto.setStatusCode(HttpStatus.OK.value());
 		return approveResDto;
 	}

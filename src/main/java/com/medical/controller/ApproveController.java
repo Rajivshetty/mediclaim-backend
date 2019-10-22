@@ -45,7 +45,7 @@ public class ApproveController {
 
 	@GetMapping("/approvers/{approverId}/claims")
 	public ResponseEntity<List<ClaimResDto>> claimList(@NotNull @PathVariable Integer approverId) {
-		log.debug("claimList method in ApproveController");
+		log.info("claimList method in ApproveController");
 		return new ResponseEntity<>(approveService.claimList(approverId), HttpStatus.OK);
 	}
 	

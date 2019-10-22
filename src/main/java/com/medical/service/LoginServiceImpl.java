@@ -20,18 +20,19 @@ import com.medical.repository.LoginRepository;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author shiva
+ * @author mahesh
  *
  */
 @Service
 @Slf4j
 public class LoginServiceImpl implements LoginService {
 
-
 	@Autowired
 	LoginRepository loingRepository;
 
 	/**
+	 * method is used to check the login details
+	 * 
 	 * @param LoginDTO
 	 * @throws BookLendingException
 	 * @return LoginResponseDTO This method check whether the credentials are
@@ -63,7 +64,7 @@ public class LoginServiceImpl implements LoginService {
 				loginResponseDTO.setRoleId(role.get().getRoleId());
 				loginResponseDTO.setMessage(LOGIN_SUCCESS);
 				loginResponseDTO.setStatusCode(LOGIN_SUCCESS_CODE);
-				
+
 			}
 
 			else {
