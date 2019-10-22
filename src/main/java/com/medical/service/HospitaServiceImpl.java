@@ -40,7 +40,6 @@ public class HospitaServiceImpl implements HospitalService {
 		if(list.isEmpty()) {
 			throw new HospitalNotFoundException(MedicalClaimConstants.HOSPITAL_NOT_FOUND);
 		}
-		LOGGER.debug(list.toString());
 		List<HospitalResponseDto> listhospital = new ArrayList<>();
 		list.stream().forEach(s ->{
 			HospitalResponseDto response = new HospitalResponseDto();
