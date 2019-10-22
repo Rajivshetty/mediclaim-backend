@@ -16,7 +16,6 @@ import lombok.Setter;
 @Getter
 public class PolicyResponseDto {
 	
-	
 	private Integer userId;
 	private String message;
 	private Integer statusCode;

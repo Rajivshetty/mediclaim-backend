@@ -55,8 +55,8 @@ public class PolicyControllerTest {
 
 		policyResponseDto = new PolicyResponseDto();
 		policyResponseDto.setUserId(1);
-		policyResponseDto.setMessage(MedicalClaimConstants.CLAIM_MESSAGE);
-		policyResponseDto.setStatusCode(MedicalClaimConstants.CLAIM_STATUS_CODE);
+		policyResponseDto.setMessage(MedicalClaimConstants.POLICY_MESSAGE);
+		policyResponseDto.setStatusCode(MedicalClaimConstants.POLICY_STATUS_CODE);
 
 	}
 	

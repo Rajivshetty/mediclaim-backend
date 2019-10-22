@@ -60,8 +60,8 @@ public class PolicyServiceImpl implements PolicyService {
 		lOGGER.debug("after validation in policy service");
 		PolicyResponseDto policyResponseDto = new PolicyResponseDto();
 		policyResponseDto.setUserId(user.get().getUserId());
-		policyResponseDto.setMessage(MedicalClaimConstants.CLAIM_MESSAGE);
-		policyResponseDto.setStatusCode(MedicalClaimConstants.CLAIM_STATUS_CODE);
+		policyResponseDto.setMessage(MedicalClaimConstants.POLICY_MESSAGE);
+		policyResponseDto.setStatusCode(MedicalClaimConstants.POLICY_STATUS_CODE);
 		return policyResponseDto;
 	}
 	
