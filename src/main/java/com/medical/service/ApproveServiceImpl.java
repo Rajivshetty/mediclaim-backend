@@ -64,7 +64,7 @@ public class ApproveServiceImpl implements ApproveService {
 
 		List<Claim> claim = claimRepo.findAllByOrderByPatientName();
 		claim.stream().forEach(c -> {
-			if (approverId == MedicalClaimConstants.APPROVER_ID) {
+			if (approverId.equals(MedicalClaimConstants.APPROVER_ID)) {
 				if (c.getApprStatus().equals(MedicalClaimConstants.PENDING)) {
 					ClaimResDto cl = new ClaimResDto();
 					BeanUtils.copyProperties(c, cl);

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
 import com.medical.entity.Role;
-import com.medical.entity.User;
 import com.medical.exception.MedicalClaimException;
 import com.medical.repository.LoginRepository;
 
