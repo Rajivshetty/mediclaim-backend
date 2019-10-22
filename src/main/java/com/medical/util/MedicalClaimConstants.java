@@ -9,7 +9,8 @@ package com.medical.util;
  */
 public class MedicalClaimConstants {
 
-
+	private MedicalClaimConstants(){}
+	
 	public static final String CREDENTIALS_EMPTY = "UserName or Password cannot be empty";
 	public static final String LOGIN_SUCCESS = "Logged In Successfully";
 	public static final String LOGIN_FAILURE = "Incorrect Username or password";

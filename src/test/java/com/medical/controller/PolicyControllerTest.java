@@ -3,6 +3,7 @@
  */
 package com.medical.controller;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -15,10 +16,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import com.medical.dto.PolicyRequestDto;
 import com.medical.dto.PolicyResponseDto;
 import com.medical.entity.User;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.PolicyServiceImpl;
 import com.medical.util.MedicalClaimConstants;
 
@@ -59,14 +62,33 @@ public class PolicyControllerTest {
 		policyResponseDto.setStatusCode(MedicalClaimConstants.POLICY_STATUS_CODE);
 
 	}
+	/**
+	 * @apiNote test case for Controller policy() method
+	 * @return PolicyResponseDto
+	 */
 	
 	@Test
 	public void testPolicy() {
 		
 		Mockito.when(policyServiceImpl.claimService(policyRequestDto)).thenReturn(policyResponseDto);
-		PolicyResponseDto actualPolicyResponseDto =policyServiceImpl.claimService(policyRequestDto);
-		assertEquals(policyResponseDto.getStatusCode(), actualPolicyResponseDto.getStatusCode());
+		ResponseEntity<PolicyResponseDto> actualPolicyResponseDto=policyController.policy(policyRequestDto);
+		assertEquals(policyResponseDto.getStatusCode(), actualPolicyResponseDto.getBody().getStatusCode());
 		
 	}
+	
+	/**
+	 * @apiNote negative test case for Controller policy() method
+	 * @throws UserNotFound
+	 */
+	@Test(expected = MedicalClaimException.class)
+	public void testPolicyException() {
+		Mockito.when(policyServiceImpl.claimService(policyRequestDto)).thenThrow(MedicalClaimException.class);
+		ResponseEntity<PolicyResponseDto> policyResponse=policyController.policy(policyRequestDto);
+		
+		assertNotNull(policyResponse);
+		
+		
+	}
+	
 
 }
