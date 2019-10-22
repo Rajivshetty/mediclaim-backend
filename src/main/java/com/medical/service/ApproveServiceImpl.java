@@ -68,7 +68,7 @@ public class ApproveServiceImpl implements ApproveService {
 				if (c.getApprStatus().equals(MedicalClaimConstants.PENDING)) {
 					ClaimResDto cl = new ClaimResDto();
 					BeanUtils.copyProperties(c, cl);
-					cl.setAppr1Status(c.getApprStatus());
+					cl.setApprStatus(c.getApprStatus());
 					Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
 					cl.setDiseaseName(disease.get().getDiseaseName());
 					cl.setLimitAmount(disease.get().getLimitAmount());
@@ -80,7 +80,7 @@ public class ApproveServiceImpl implements ApproveService {
 			} else {
 				ClaimResDto cl = new ClaimResDto();
 				BeanUtils.copyProperties(c, cl);
-				cl.setAppr1Status(c.getApprStatus());
+				cl.setApprStatus(c.getApprStatus());
 				Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
 				cl.setDiseaseName(disease.get().getDiseaseName());
 				cl.setLimitAmount(disease.get().getLimitAmount());
@@ -106,6 +106,7 @@ public class ApproveServiceImpl implements ApproveService {
 	 */
 	@Override
 	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) {
+		System.out.println(approveReqDto);
 		log.debug("approveClaim method in ApproveServiceImpl class");
 		Optional<Claim> claim = claimRepo.findByClaimId(approveReqDto.getClaimId());
 		if (claim.isPresent()) {

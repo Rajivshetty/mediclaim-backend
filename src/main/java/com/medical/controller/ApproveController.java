@@ -60,6 +60,7 @@ public class ApproveController {
 	 */
 	@PostMapping("/approvers")
 	public ResponseEntity<ApproveResDto> approveClaim(@NotNull @RequestBody ApproveReqDto approveReqDto){
+		System.out.println(approveReqDto.getStatus());
 		log.debug("approveClaim method in ApproveController");
 		return new ResponseEntity<>(approveService.approveClaim(approveReqDto),HttpStatus.OK);
 	}

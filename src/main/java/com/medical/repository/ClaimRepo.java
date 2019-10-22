@@ -18,7 +18,7 @@ import com.medical.entity.ClaimApproval;
 @Repository
 public interface ClaimRepo extends JpaRepository<Claim, Integer>{
 
-	Optional<List<Claim>> findByApproverId(@NotNull Integer approverId);
+	Optional<List<Claim>> findByApproverId(Integer approverId);
 
 	Optional<List<Claim>> findAllByApprStatus(String status);
 
