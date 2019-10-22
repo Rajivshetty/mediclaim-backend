@@ -74,12 +74,10 @@ public class PolicyServiceImplTest {
 	}
 
 	@Test(expected = MedicalClaimException.class)
-	public void testClaimServiceException(){
-		
+	public void testClaimServiceException() {
+
 		policyServiceImpl.claimService(policyRequestDto);
-		
-		
+
 	}
-	
-	
+
 }

@@ -5,6 +5,8 @@ package com.medical.dto;
 
 import java.time.LocalDate;
 
+import org.hibernate.validator.constraints.Range;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +19,7 @@ import lombok.Setter;
 @Getter
 public class PolicyRequestDto {
 	
+	@Range()
 	private Integer policyNo;
 	private long aadharNo;
 	private LocalDate dob;
