@@ -74,8 +74,6 @@ public class HospitalServiceImplTest {
 	 */
 	@Test(expected = HospitalNotFoundException.class)
 	public void negativeTestGetHospitalList() {
-		Mockito.when(hospitalRepository.findAll()).thenThrow(HospitalNotFoundException.class);
 		list = hospitalServiceImpl.getHospitalList();
-		assertNotNull(list);
 	}
 }

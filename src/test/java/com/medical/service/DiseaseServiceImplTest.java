@@ -74,8 +74,6 @@ public class DiseaseServiceImplTest {
 	 */
 	@Test(expected = DiseaseNotFoundException.class)
 	public void negativeTestGetDiseasesList() {
-		Mockito.when(diseaseRepository.findAll()).thenThrow(DiseaseNotFoundException.class);
 		diseases = diseaseServiceImpl.getDiseaseList();
-		assertNotNull(diseases);
 	}
 }
