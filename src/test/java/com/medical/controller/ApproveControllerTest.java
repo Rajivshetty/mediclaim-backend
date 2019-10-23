@@ -1,8 +1,5 @@
 package com.medical.controller;
 
-/**
- *  author mahesh
- */
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -25,6 +22,9 @@ import com.medical.exception.MedicalClaimException;
 import com.medical.service.ApproveService;
 import com.medical.util.MedicalClaimConstants;
 
+/**
+ * author mahesh
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ApproveControllerTest {
 

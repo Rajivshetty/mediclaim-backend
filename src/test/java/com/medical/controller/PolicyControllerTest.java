@@ -31,16 +31,16 @@ import com.medical.util.MedicalClaimConstants;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class PolicyControllerTest {
-	
+
 	@Mock
 	private PolicyServiceImpl policyServiceImpl;
 	@InjectMocks
 	private PolicyController policyController;
-	
+
 	User user = null;
 	PolicyRequestDto policyRequestDto = null;
 	PolicyResponseDto policyResponseDto = null;
-	
+
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
@@ -62,39 +62,34 @@ public class PolicyControllerTest {
 		policyResponseDto.setStatusCode(MedicalClaimConstants.POLICY_STATUS_CODE);
 
 	}
+
 	/**
 	 * @apiNote test case for Controller policy() method
 	 * @return PolicyResponseDto
-	 * @throws MedicalClaimException 
+	 * @throws MedicalClaimException
 	 */
-	
+
 	@Test
 	public void testPolicy() throws MedicalClaimException {
-		
+
 		Mockito.when(policyServiceImpl.claimService(policyRequestDto)).thenReturn(policyResponseDto);
-		ResponseEntity<PolicyResponseDto> actualPolicyResponseDto=policyController.policy(policyRequestDto);
+		ResponseEntity<PolicyResponseDto> actualPolicyResponseDto = policyController.policy(policyRequestDto);
 		assertEquals(policyResponseDto.getStatusCode(), actualPolicyResponseDto.getBody().getStatusCode());
-		
+
 	}
-	
+
 	/**
-<<<<<<< HEAD
-	 * @throws MedicalClaimException 
-=======
-	 *  
->>>>>>> c05b57257f3941649c80c33533ef9e2a59252e7e
+	 * 
 	 * @apiNote negative test case for Controller policy() method
 	 * @throws MedicalClaimException
 	 */
 	@Test(expected = MedicalClaimException.class)
 	public void testPolicyException() throws MedicalClaimException {
 		Mockito.when(policyServiceImpl.claimService(policyRequestDto)).thenThrow(MedicalClaimException.class);
-		ResponseEntity<PolicyResponseDto> policyResponse=policyController.policy(policyRequestDto);
-		
+		ResponseEntity<PolicyResponseDto> policyResponse = policyController.policy(policyRequestDto);
+
 		assertNotNull(policyResponse);
-		
-		
+
 	}
-	
 
 }

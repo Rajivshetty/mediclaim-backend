@@ -86,12 +86,10 @@ public class ApproveServiceImplTest {
 	public void testClaimList() throws MedicalClaimException {
 
 		Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimList));
-
 		Mockito.when(diseaseRepo.findById(Mockito.anyInt())).thenReturn(Optional.of(disease));
 		Mockito.when(hospitalRepo.findById(Mockito.anyInt())).thenReturn(Optional.of(hospital));
 
 		List<ClaimResDto> actualValue = approveServiceImpl.claimList(1);
-
 		assertEquals(claimResDtoList.size(), actualValue.size());
 
 	}
@@ -108,6 +106,7 @@ public class ApproveServiceImplTest {
 		claim.setDischargedDate(LocalDate.of(2019, 10, 13));
 		claim.setApprStatus(MedicalClaimConstants.APPROVED);
 		claimAppr.add(claim);
+
 
 		Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimAppr));
 
@@ -145,7 +144,7 @@ public class ApproveServiceImplTest {
 
 		 Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimAppr));
 
-		approveServiceImpl.claimList(2);
+		approveServiceImpl.claimList(1);
 
 	}
 

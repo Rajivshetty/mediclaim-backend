@@ -46,7 +46,6 @@ public class PolicyController {
 	 * @throws MedicalClaimException
 	 */
 	@PostMapping("/policies")
-
 	public ResponseEntity<PolicyResponseDto> policy(@NotNull @RequestBody PolicyRequestDto policyRequestDto)
 			throws MedicalClaimException {
 		lOGGER.info("inside policy controller");

@@ -22,10 +22,12 @@ import com.medical.dto.HospitalResponseDto;
 import com.medical.service.HospitalService;
 
 /**
- * HospitalControllerTest is used to test HospitalController.class
+ * <<<<<<< HEAD HospitalControllerTest is used to test HospitalController.class
  * 
  * @author Abhishek C
  *
+ *         =======
+ * @author Abhishek C >>>>>>> 770488ca8e65d327fc89718fa4754180cafc0c4f
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = HospitalController.class)
@@ -55,10 +57,12 @@ public class HospitalControllerTest {
 	/**
 	 * testGetHospitals is used to test getHospitalList() method in
 	 * HospitalController.class
+	 * 
 	 * @Param no parameters
 	 * @return nothing
 	 * @throws JsonProcessingException
 	 */
+
 	@Test
 	public void testGetHospitals() throws JsonProcessingException, Exception {
 		Mockito.when(hospitalService.getHospitalList()).thenReturn(list);
@@ -68,11 +72,13 @@ public class HospitalControllerTest {
 
 	/**
 	 * Method that can be used to serialize any Java value as a String
-	 * @Param object parameter 
+	 * 
+	 * @Param object parameter
 	 * @return String
 	 * @Throws JsonProcessingException
 	 */
 	public static String asJsonString(final Object object) throws JsonProcessingException {
 		return new ObjectMapper().writeValueAsString(object);
+
 	}
 }

@@ -22,10 +22,12 @@ import com.medical.dto.DiseaseResponseDto;
 import com.medical.service.DiseaseService;
 
 /**
- * DiseaseControllerTest is used to test DiseaseController.class
+ * <<<<<<< HEAD DiseaseControllerTest is used to test DiseaseController.class
  * 
  * @author Abhishek C
  *
+ *         =======
+ * @author Abhishek C >>>>>>> 770488ca8e65d327fc89718fa4754180cafc0c4f
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = DiseaseController.class)
@@ -71,11 +73,13 @@ public class DiseaseControllerTest {
 
 	/**
 	 * Method that can be used to serialize any Java value as a String
+	 * 
 	 * @Param object parameter
 	 * @return String
 	 * @Throws JsonProcessingException
 	 */
 	public static String asJsonString(final Object object) throws JsonProcessingException {
 		return new ObjectMapper().writeValueAsString(object);
+
 	}
 }

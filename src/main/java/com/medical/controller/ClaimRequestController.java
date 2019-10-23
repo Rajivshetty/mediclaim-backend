@@ -20,10 +20,10 @@ import com.medical.exception.MedicalClaimException;
 import com.medical.service.AddClaimService;
 
 /**
+ * This class adds the  medical claims
  * @author shiva
- * @version 1.0
+ * @version 1.0 
  * 
- * This class adds the medical claims
  */
 @RestController
 @RequestMapping("/api")

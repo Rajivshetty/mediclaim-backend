@@ -66,14 +66,13 @@ public class MedicalClaimConstants {
 
 		try {
 
-			// Get the file and save it somewhere
 			byte[] bytes = file.getBytes();
 			Path path = Paths.get(MedicalClaimConstants.UPLOADED_FOLDER + file.getOriginalFilename());
 
 			Files.write(path, bytes);
 
 			redirectAttributes.addFlashAttribute("message",
-					"You successfully uploaded '" + file.getOriginalFilename() + "'");
+					"You successfully uploaded");
 
 		} catch (IOException e) {
 			LOGGER.info("Exception");

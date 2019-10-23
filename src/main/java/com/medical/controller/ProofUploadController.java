@@ -17,9 +17,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.medical.service.ProofUploadService;
 
 /**
+ * This class uploads the discharge document
+ * 
  * @author shiva
- * @version 1.0 This class uploads the discharge document
+ * @version 1.0
  */
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = { "*", "*/" }, allowedHeaders = { "*", "*/" })

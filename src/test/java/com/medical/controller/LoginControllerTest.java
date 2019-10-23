@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
@@ -30,23 +31,22 @@ public class LoginControllerTest {
 
 	@InjectMocks
 	LoginController loginController;
-	
+
 	@Test
 	public void testGetAdmin() throws MedicalClaimException {
 		LoginDTO loginDTO = new LoginDTO();
 		loginDTO.setAdminName("Mahesh");
 		loginDTO.setAdminPassword("mahesh");
-		
-		LoginResponseDTO loginResponseDTO=new LoginResponseDTO();
+
+		LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
 		loginResponseDTO.setRoleId(1);
 		loginResponseDTO.setAdminName("Mahesh");
 		loginResponseDTO.setMessage(MedicalClaimConstants.LOGIN_SUCCESS);
 		loginResponseDTO.setStatusCode(MedicalClaimConstants.LOGIN_SUCCESS_CODE);
-	
 
 		Mockito.when(loginServiceImpl.getAdminDetails(loginDTO)).thenReturn(loginResponseDTO);
-		LoginResponseDTO actualValue=loginServiceImpl.getAdminDetails(loginDTO);
-		assertEquals(loginResponseDTO.getStatusCode(), actualValue.getStatusCode());
+		ResponseEntity<LoginResponseDTO> actualValue = loginController.getAdmin(loginDTO);
+		assertEquals(loginResponseDTO.getStatusCode(), actualValue.getBody().getStatusCode());
 	}
 
 }

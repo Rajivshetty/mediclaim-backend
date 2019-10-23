@@ -32,8 +32,9 @@ public class PolicyServiceImpl implements PolicyService {
 	/**
 	 * This method is intended to user policy with proper credentials
 	 *
+	 * @param PolicyRequestDto
+	 *            is the input object which have policyNo, aadharNo,DOB
 	 * @param PolicyRequestDto is the input object which have policyNo, aadharNo,DOB
-	 * @exception USER_NOT_EXIST
 	 * @return PolicyResponseDto which returns userId,message, statusCode
 	 * @throws MedicalClaimException
 	 */
