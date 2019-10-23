@@ -23,7 +23,7 @@ public interface ClaimRepo extends JpaRepository<Claim, Integer>{
 	
 	List<Claim> findAll();
 
-	List<Claim> findAllByOrderByPatientName();
+	Optional<List<Claim>> findAllByOrderByPatientName();
 
 	
 }

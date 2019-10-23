@@ -1,10 +1,14 @@
 /**
  * @author shiva
  * @version 1.0 
- * This class adds the claims
+ * This class adds the  medical claims
  */
 package com.medical.controller;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +28,8 @@ import com.medical.service.AddClaimService;
 @CrossOrigin(origins = { "*", "*/" }, allowedHeaders = { "*", "*/" })
 public class ClaimRequestController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClaimRequestController.class);
+
 	@Autowired
 	AddClaimService addClaimService;
 
@@ -36,7 +42,10 @@ public class ClaimRequestController {
 	 * @exception MedicalClaimException
 	 */
 	@PostMapping("/claims")
-	public ResponseEntity<ResponseDto> addClaim(@RequestBody ClaimDTO claimDTO) {
+
+	public ResponseEntity<ResponseDto> addClaim(@Valid @RequestBody ClaimDTO claimDTO) throws MedicalClaimException {
+
+		LOGGER.info("ClaimRequestController");
 
 		return new ResponseEntity<>(addClaimService.addClaim(claimDTO), HttpStatus.CREATED);
 

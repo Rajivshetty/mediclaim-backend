@@ -27,7 +27,7 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer roleId;
-	private String role;
+	private String roles;
 	private String adminName;
 	private String adminPassword;
 

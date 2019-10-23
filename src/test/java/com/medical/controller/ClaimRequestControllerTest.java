@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.medical.controller;
 
 import static org.junit.Assert.assertEquals;
@@ -14,20 +17,25 @@ import org.springframework.http.ResponseEntity;
 
 import com.medical.dto.ClaimDTO;
 import com.medical.dto.ResponseDto;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.AddClaimServiceImpl;
 import com.medical.util.MedicalClaimConstants;
 
+/**
+ * @author User1
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
-public class ClaimRequestControllerTest2 {
+public class ClaimRequestControllerTest {
 
 	@Mock
-	AddClaimServiceImpl addClaimServiceImpl;
+	private AddClaimServiceImpl addClaimServiceImpl;
 
 	@InjectMocks
-	ClaimRequestController claimRequestController;
+	private ClaimRequestController claimRequestController;
 
 	@Test
-	public void testAddClaim() {
+	public void testAddClaim() throws MedicalClaimException {
 
 		ClaimDTO claimDTO = new ClaimDTO();
 
@@ -49,5 +57,6 @@ public class ClaimRequestControllerTest2 {
 		assertEquals(responseDTO.getStatusCode(), actualValue.getBody().getStatusCode());
 
 	}
+
 
 }

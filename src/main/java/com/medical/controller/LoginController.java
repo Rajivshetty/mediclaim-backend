@@ -1,5 +1,6 @@
 package com.medical.controller;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.LoginService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,9 +37,10 @@ public class LoginController {
 	 * This method is used for Admin login to approve claim
 	 * 
 	 * @param LoginDTO
+	 * @throws MedicalClaimException 
 	 */
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponseDTO> getAdmin(@NotNull @RequestBody LoginDTO loginDTO) {
+	public ResponseEntity<LoginResponseDTO> getAdmin(@Valid @NotNull @RequestBody LoginDTO loginDTO) throws MedicalClaimException {
 		log.debug("LoginController.class");
 		return new ResponseEntity<>(loginService.getAdminDetails(loginDTO), HttpStatus.OK);
 

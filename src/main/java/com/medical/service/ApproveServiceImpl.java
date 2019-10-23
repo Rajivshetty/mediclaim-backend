@@ -55,24 +55,35 @@ public class ApproveServiceImpl implements ApproveService {
 	 * 
 	 * @param approverId
 	 * @return List<ClaimResDto>
+	 * @throws MedicalClaimException
 	 */
 	@Override
-	public List<ClaimResDto> claimList(@NotNull Integer approverId) {
+	public List<ClaimResDto> claimList(@NotNull Integer approverId) throws MedicalClaimException {
 
 		log.debug("getMyApproves method in ApproveServiceImpl class");
 
 		List<ClaimResDto> claimList = new ArrayList<>();
-		List<Claim> claim = claimRepo.findAllByOrderByPatientName();
+		Optional<List<Claim>> claim = claimRepo.findAllByOrderByPatientName();
+		if (!claim.isPresent()) {
+			throw new MedicalClaimException(MedicalClaimConstants.RECORD_NOT_FOUND);
+		}
 		List<Claim> claims = new ArrayList<>();
 
 		if (approverId == MedicalClaimConstants.APPROVER_ID) {
-			claims = claim.stream().filter(line -> line.getApprStatus().equals(MedicalClaimConstants.PENDING))
+			claims = claim.get().stream().filter(line -> line.getApprStatus().equals(MedicalClaimConstants.PENDING))
 					.collect(Collectors.toList());
+			if (claims.isEmpty()) {
+				throw new MedicalClaimException(MedicalClaimConstants.RECORD_NOT_FOUND);
+			}
+
 		} else {
-			claims = claim.stream()
+			claims = claim.get().stream()
 					.filter(line -> (line.getApprStatus().equals(MedicalClaimConstants.APPROVED)
 							|| line.getApprStatus().equals(MedicalClaimConstants.REJECTED)))
 					.collect(Collectors.toList());
+			if (claims.isEmpty()) {
+				throw new MedicalClaimException(MedicalClaimConstants.RECORD_NOT_FOUND);
+			}
 		}
 		claims.forEach(c -> {
 			ClaimResDto cl = new ClaimResDto();
@@ -98,9 +109,10 @@ public class ApproveServiceImpl implements ApproveService {
 	 * @param status
 	 * @param comment
 	 * @return ApproveResDto
+	 * @throws MedicalClaimException
 	 */
 	@Override
-	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) {
+	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) throws MedicalClaimException {
 		log.debug("approveClaim method in ApproveServiceImpl class");
 
 		Optional<Claim> claim = claimRepo.findByClaimId(approveReqDto.getClaimId());
@@ -119,7 +131,6 @@ public class ApproveServiceImpl implements ApproveService {
 			claimApproval.setStatus(approveReqDto.getStatus());
 			claimApproval.setApprovedDate(LocalDate.now());
 			claimApprovalRepo.save(claimApproval);
-
 		} else {
 			throw new MedicalClaimException(MedicalClaimConstants.RECORD_NOT_FOUND);
 		}

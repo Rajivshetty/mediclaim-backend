@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.medical.dto.ApproveReqDto;
 import com.medical.dto.ApproveResDto;
 import com.medical.dto.ClaimResDto;
+import com.medical.exception.MedicalClaimException;
 
 /**
  * 
@@ -18,8 +19,8 @@ import com.medical.dto.ClaimResDto;
 @Service
 public interface ApproveService {
 
-	List<ClaimResDto> claimList(@NotNull Integer approverId);
+	List<ClaimResDto> claimList(@NotNull Integer approverId) throws MedicalClaimException;
 
-	ApproveResDto approveClaim(ApproveReqDto approveReqDto);
+	ApproveResDto approveClaim(ApproveReqDto approveReqDto) throws MedicalClaimException;
 
 }

@@ -1,4 +1,5 @@
 package com.medical.controller;
+
 /**
  *  author mahesh
  */
@@ -16,10 +17,13 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.medical.dto.ApproveReqDto;
 import com.medical.dto.ApproveResDto;
 import com.medical.dto.ClaimResDto;
 import com.medical.entity.Claim;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.ApproveService;
+import com.medical.util.MedicalClaimConstants;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ApproveControllerTest {
@@ -31,7 +35,7 @@ public class ApproveControllerTest {
 	ApproveController approveController;
 
 	@Test
-	public void testClaimList() {
+	public void testClaimList() throws MedicalClaimException {
 		List<ClaimResDto> list = new ArrayList<>();
 
 		Claim claim1 = new Claim();
@@ -52,6 +56,21 @@ public class ApproveControllerTest {
 		assertEquals(list.size(), obj.getBody().size());
 	}
 
+	@Test
+	public void testApproveClaim() throws MedicalClaimException {
+		ApproveReqDto approveReqDto = new ApproveReqDto();
+		approveReqDto.setApproverId(1);
+		approveReqDto.setClaimId(1);
+		approveReqDto.setComment("NICE");
+		approveReqDto.setStatus("APPROVED");
 
+		ApproveResDto approveResDto = new ApproveResDto();
+		approveResDto.setMessage(MedicalClaimConstants.UPDATED);
+		approveResDto.setStatusCode(HttpStatus.OK.value());
+
+		Mockito.when(approveService.approveClaim(approveReqDto)).thenReturn(approveResDto);
+		ResponseEntity<ApproveResDto> actualValue = approveController.approveClaim(approveReqDto);
+		assertEquals(approveResDto.getStatusCode(), actualValue.getBody().getStatusCode());
+	}
 
 }

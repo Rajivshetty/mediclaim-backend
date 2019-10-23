@@ -53,7 +53,7 @@ public class AddClaimServiceImpl implements AddClaimService {
 	 */
 	@Override
 
-	public ResponseDto addClaim(ClaimDTO claimDTO) {
+	public ResponseDto addClaim(ClaimDTO claimDTO) throws MedicalClaimException {
 
 		LOGGER.info("Add claim Service impl");
 
@@ -77,7 +77,10 @@ public class AddClaimServiceImpl implements AddClaimService {
 				LOGGER.info("user ID:{} Admission Date :{} Discharge Date:{} Claim Amount:{} Disease Amount:{}",
 						claim.getUserId(), claim.getAdmissionDate(), claim.getDischargedDate(), claim.getClaimAmount(),
 						disease.getLimitAmount());
-				if (claim.getAdmissionDate().isBefore(claim.getDischargedDate())) {
+				if ((claim.getAdmissionDate().isBefore(claim.getDischargedDate()))
+						|| (claim.getDischargedDate().isBefore(claim.getAdmissionDate()))
+						|| (claim.getAdmissionDate().isAfter(LocalDate.now()))
+						|| (claim.getDischargedDate().isAfter(LocalDate.now()))) {
 
 					if (claim.getClaimAmount() <= disease.getLimitAmount()) {
 
