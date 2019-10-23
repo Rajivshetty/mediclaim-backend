@@ -73,7 +73,7 @@ public class MedicalClaimConstants {
 			Files.write(path, bytes);
 
 			redirectAttributes.addFlashAttribute("message",
-					"You successfully uploaded '" + file.getOriginalFilename() + "'");
+					"You successfully uploaded");
 
 		} catch (IOException e) {
 			LOGGER.info("Exception");

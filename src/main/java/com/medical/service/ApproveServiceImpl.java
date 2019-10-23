@@ -50,6 +50,8 @@ public class ApproveServiceImpl implements ApproveService {
 
 	@Autowired
 	ClaimApprovalRepo claimApprovalRepo;
+	
+	List<Claim> claims = null;
 
 	/**
 	 * this method returns the list of claim details based on the approverId
@@ -61,14 +63,15 @@ public class ApproveServiceImpl implements ApproveService {
 	@Override
 	public List<ClaimResDto> claimList(@NotNull Integer approverId) throws MedicalClaimException {
 
-		log.debug("getMyApproves method in ApproveServiceImpl class");
+		log.debug("claimList method in ApproveServiceImpl class");
 
 		List<ClaimResDto> claimList = new ArrayList<>();
 		Optional<List<Claim>> claim = claimRepo.findAllByOrderByPatientName();
 		if (!claim.isPresent()) {
 			throw new MedicalClaimException(MedicalClaimConstants.RECORD_NOT_FOUND);
 		}
-		List<Claim> claims = new ArrayList<>();
+		
+		claims = new ArrayList<>();
 
 		if (approverId == MedicalClaimConstants.APPROVER_ID) {
 			claims = claim.get().stream().filter(line -> line.getApprStatus().equals(MedicalClaimConstants.PENDING))

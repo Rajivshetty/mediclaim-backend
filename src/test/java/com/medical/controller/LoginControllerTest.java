@@ -43,7 +43,6 @@ public class LoginControllerTest {
 		loginResponseDTO.setMessage(MedicalClaimConstants.LOGIN_SUCCESS);
 		loginResponseDTO.setStatusCode(MedicalClaimConstants.LOGIN_SUCCESS_CODE);
 	
-
 		Mockito.when(loginServiceImpl.getAdminDetails(loginDTO)).thenReturn(loginResponseDTO);
 		LoginResponseDTO actualValue=loginServiceImpl.getAdminDetails(loginDTO);
 		assertEquals(loginResponseDTO.getStatusCode(), actualValue.getStatusCode());
