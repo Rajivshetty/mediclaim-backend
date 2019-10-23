@@ -1,6 +1,6 @@
 package com.medical.exception;
 
-public class MedicalClaimException extends RuntimeException {
+public class MedicalClaimException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 

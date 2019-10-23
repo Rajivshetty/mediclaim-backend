@@ -36,7 +36,7 @@ public class ClaimRequestController {
 	 * @exception MedicalClaimException
 	 */
 	@PostMapping("/claims")
-	public ResponseEntity<ResponseDto> addClaim(@RequestBody ClaimDTO claimDTO) {
+	public ResponseEntity<ResponseDto> addClaim(@RequestBody ClaimDTO claimDTO) throws MedicalClaimException {
 
 		return new ResponseEntity<>(addClaimService.addClaim(claimDTO), HttpStatus.CREATED);
 

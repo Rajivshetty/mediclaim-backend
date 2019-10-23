@@ -53,7 +53,7 @@ public class AddClaimServiceImpl implements AddClaimService {
 	 */
 	@Override
 
-	public ResponseDto addClaim(ClaimDTO claimDTO) {
+	public ResponseDto addClaim(ClaimDTO claimDTO) throws MedicalClaimException {
 
 		LOGGER.info("Add claim Service impl");
 

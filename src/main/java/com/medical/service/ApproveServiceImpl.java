@@ -103,9 +103,10 @@ public class ApproveServiceImpl implements ApproveService {
 	 * @param status
 	 * @param comment
 	 * @return ApproveResDto
+	 * @throws MedicalClaimException 
 	 */
 	@Override
-	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) {
+	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) throws MedicalClaimException {
 		log.debug("approveClaim method in ApproveServiceImpl class");
 		Optional<Claim> claim = claimRepo.findByClaimId(approveReqDto.getClaimId());
 		if (claim.isPresent()) {

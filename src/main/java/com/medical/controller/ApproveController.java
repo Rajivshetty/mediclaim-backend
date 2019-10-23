@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.medical.dto.ApproveReqDto;
 import com.medical.dto.ApproveResDto;
 import com.medical.dto.ClaimResDto;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.ApproveService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -57,9 +58,10 @@ public class ApproveController {
 	 * @param status
 	 * @param comment
 	 * @return ApproveResDto
+	 * @throws MedicalClaimException 
 	 */
 	@PostMapping("/approvers")
-	public ResponseEntity<ApproveResDto> approveClaim(@NotNull @RequestBody ApproveReqDto approveReqDto){
+	public ResponseEntity<ApproveResDto> approveClaim(@NotNull @RequestBody ApproveReqDto approveReqDto) throws MedicalClaimException{
 		log.debug("approveClaim method in ApproveController");
 		return new ResponseEntity<>(approveService.approveClaim(approveReqDto),HttpStatus.OK);
 	}

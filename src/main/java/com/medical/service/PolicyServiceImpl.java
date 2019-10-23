@@ -38,10 +38,11 @@ public class PolicyServiceImpl implements PolicyService {
 	 *            is the input object which have policyNo, aadharNo,DOB
 	 * @exception USER_NOT_EXIST
 	 * @return PolicyResponseDto which returns userId,message, statusCode
+	 * @throws MedicalClaimException 
 	 */
 
 	@Override
-	public PolicyResponseDto claimService(PolicyRequestDto policyRequestDto) {
+	public PolicyResponseDto claimService(PolicyRequestDto policyRequestDto) throws MedicalClaimException {
 
 		lOGGER.info("In Policy service ");
 		Optional<User> user = userRepository.findByPolicyNo(policyRequestDto.getPolicyNo());

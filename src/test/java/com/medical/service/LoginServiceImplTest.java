@@ -18,6 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
 import com.medical.entity.Role;
+import com.medical.exception.MedicalClaimException;
 import com.medical.repository.LoginRepository;
 
 /**
@@ -50,7 +51,7 @@ public class LoginServiceImplTest {
 
 
 	@Test
-	public void testGetAdminDetails() {
+	public void testGetAdminDetails() throws MedicalClaimException {
 
 		LoginDTO loginDTO = new LoginDTO();
 		loginDTO.setAdminName("Mahesh");;

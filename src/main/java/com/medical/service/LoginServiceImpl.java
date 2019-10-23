@@ -36,9 +36,10 @@ public class LoginServiceImpl implements LoginService {
 	 * @throws BookLendingException
 	 * @return LoginResponseDTO This method check whether the credentials are
 	 *         correct or in correct
+	 * @throws MedicalClaimException 
 	 */
 	@Override
-	public LoginResponseDTO getAdminDetails(LoginDTO loginDTO) {
+	public LoginResponseDTO getAdminDetails(LoginDTO loginDTO) throws MedicalClaimException {
 
 		log.info("Inside LoginServiceImpl");
 
