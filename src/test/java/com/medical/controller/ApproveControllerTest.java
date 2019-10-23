@@ -21,6 +21,7 @@ import com.medical.dto.ApproveReqDto;
 import com.medical.dto.ApproveResDto;
 import com.medical.dto.ClaimResDto;
 import com.medical.entity.Claim;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.ApproveService;
 import com.medical.util.MedicalClaimConstants;
 
@@ -56,7 +57,7 @@ public class ApproveControllerTest {
 	}
 
 	@Test
-	public void testApproveClaim() {
+	public void testApproveClaim() throws MedicalClaimException {
 		ApproveReqDto approveReqDto = new ApproveReqDto();
 		approveReqDto.setApproverId(1);
 		approveReqDto.setClaimId(1);

@@ -24,23 +24,23 @@ import com.medical.service.DiseaseService;
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/api")
 public class DiseaseController {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(DiseaseController.class);
-	
+
 	@Autowired
 	DiseaseService diseaseService;
-	
+
 	/**
 	 * @author Abhishek C
 	 * @apiNote controller to fetch list of diseases
-	   @return list of hospitals
+	 * @return list of hospitals
 	 */
 	@GetMapping("/diseases")
-	public ResponseEntity<List<DiseaseResponseDto>> getDiseaseList(){
+	public ResponseEntity<List<DiseaseResponseDto>> getDiseaseList() {
 		LOGGER.debug("DiseaseController class getDiseaseList method");
-		List<DiseaseResponseDto> diseasesList  = diseaseService.getDiseaseList();
-		return new ResponseEntity<>(diseasesList,HttpStatus.OK);
-		
+		List<DiseaseResponseDto> diseasesList = diseaseService.getDiseaseList();
+		return new ResponseEntity<>(diseasesList, HttpStatus.OK);
+
 	}
 
 }

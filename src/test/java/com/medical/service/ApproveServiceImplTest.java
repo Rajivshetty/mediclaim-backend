@@ -111,7 +111,7 @@ public class ApproveServiceImplTest {
 	}
 
 	@Test(expected = MedicalClaimException.class)
-	public void testApproveClaimElse() {
+	public void testApproveClaimElse() throws MedicalClaimException {
 		ApproveReqDto approveReqDto = new ApproveReqDto();
 		approveReqDto.setApproverId(1);
 		approveReqDto.setClaimId(99);
@@ -134,7 +134,7 @@ public class ApproveServiceImplTest {
 	}
 
 	@Test
-	public void testApproveClaim() {
+	public void testApproveClaim() throws MedicalClaimException {
 		ApproveReqDto approveReqDto = new ApproveReqDto();
 		approveReqDto.setApproverId(1);
 		approveReqDto.setClaimId(1);

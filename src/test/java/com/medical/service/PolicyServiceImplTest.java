@@ -72,10 +72,11 @@ public class PolicyServiceImplTest {
 	/**
 	 * @apiNote test case for claimService() method
 	 * @return PolicyResponseDto
+	 * @throws MedicalClaimException 
 	 */
 
 	@Test
-	public void testClaimService() {
+	public void testClaimService() throws MedicalClaimException {
 		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenReturn(Optional.of(user));
 		PolicyResponseDto actualResponseDto = policyServiceImpl.claimService(policyRequestDto);
 
@@ -85,12 +86,13 @@ public class PolicyServiceImplTest {
 	
 	
 	/**
+	 * @throws MedicalClaimException 
 	 * @apiNote negative test case for claimService() method
 	 * @throws PolicyNotFound
 	 */
 
 	@Test(expected = MedicalClaimException.class)
-	public void testClaimServiceException() {
+	public void testClaimServiceException() throws MedicalClaimException {
 		
 		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenThrow(MedicalClaimException.class);
 		PolicyResponseDto policyResponse=policyServiceImpl.claimService(policyRequestDto);

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.medical.dto.ClaimDTO;
 import com.medical.dto.ResponseDto;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.AddClaimServiceImpl;
 import com.medical.util.MedicalClaimConstants;
 
@@ -27,7 +28,7 @@ public class ClaimRequestControllerTest2 {
 	ClaimRequestController claimRequestController;
 
 	@Test
-	public void testAddClaim() {
+	public void testAddClaim() throws MedicalClaimException {
 
 		ClaimDTO claimDTO = new ClaimDTO();
 

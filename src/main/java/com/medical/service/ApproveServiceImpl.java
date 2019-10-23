@@ -73,6 +73,7 @@ public class ApproveServiceImpl implements ApproveService {
 					cl.setDiseaseName(disease.get().getDiseaseName());
 					cl.setLimitAmount(disease.get().getLimitAmount());
 					Optional<Hospital> hospital = hospitalRepo.findById(c.getHospitalId());
+					log.info("HospitalId:{}",c.getHospitalId());
 					cl.setHospitalName(hospital.get().getHospitalName());
 					cl.setClaimId(c.getClaimId());
 					claimList.add(cl);
@@ -103,9 +104,10 @@ public class ApproveServiceImpl implements ApproveService {
 	 * @param status
 	 * @param comment
 	 * @return ApproveResDto
+	 * @throws MedicalClaimException 
 	 */
 	@Override
-	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) {
+	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) throws MedicalClaimException {
 		log.debug("approveClaim method in ApproveServiceImpl class");
 		Optional<Claim> claim = claimRepo.findByClaimId(approveReqDto.getClaimId());
 		if (claim.isPresent()) {

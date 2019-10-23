@@ -77,7 +77,7 @@ public class AddClaimServiceImplTest {
 	}
 
 	@Test
-	public void addClaimTest() {
+	public void addClaimTest() throws MedicalClaimException {
 
 		Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
 		Mockito.when(diseaseRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(disease));
@@ -90,7 +90,7 @@ public class AddClaimServiceImplTest {
 	}
 
 	@Test(expected = MedicalClaimException.class)
-	public void addClaimUserTest() {
+	public void addClaimUserTest() throws MedicalClaimException {
 
 		User user = new User();
 		user.setUserId(1);
@@ -104,7 +104,7 @@ public class AddClaimServiceImplTest {
 	}
 
 	@Test(expected = MedicalClaimException.class)
-	public void addClaimDiseaseTest() {
+	public void addClaimDiseaseTest() throws MedicalClaimException {
 
 		ClaimDTO claimDTO = new ClaimDTO();
 
@@ -122,7 +122,7 @@ public class AddClaimServiceImplTest {
 	}
 
 	@Test(expected = MedicalClaimException.class)
-	public void addClaimDateTest() {
+	public void addClaimDateTest() throws MedicalClaimException {
 
 		ClaimDTO claimDTO = new ClaimDTO();
 
@@ -144,7 +144,7 @@ public class AddClaimServiceImplTest {
 	}
 
 	@Test(expected = MedicalClaimException.class)
-	public void addClaimAmountTest() {
+	public void addClaimAmountTest() throws MedicalClaimException {
 
 		Disease disease = new Disease();
 		disease.setDiseaseId(1);

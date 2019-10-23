@@ -1,3 +1,7 @@
+/**
+ * @author mahesh
+ *
+ */
 package com.medical.service;
 
 import static com.medical.util.MedicalClaimConstants.CREDENTIALS_EMPTY;
@@ -9,6 +13,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
@@ -18,10 +23,6 @@ import com.medical.repository.LoginRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * @author mahesh
- *
- */
 @Service
 @Slf4j
 public class LoginServiceImpl implements LoginService {
@@ -30,15 +31,16 @@ public class LoginServiceImpl implements LoginService {
 	LoginRepository loingRepository;
 
 	/**
-	 * method is used to check the login details
+	 * method is used to check the login details and also check whether the
+	 * credentials are correct or in correct
 	 * 
 	 * @param LoginDTO
-	 * @throws BookLendingException
-	 * @return LoginResponseDTO This method check whether the credentials are
-	 *         correct or in correct
+	 * 
+	 * @return LoginResponseDTO
+	 * @throws MedicalClaimException
 	 */
 	@Override
-	public LoginResponseDTO getAdminDetails(LoginDTO loginDTO) {
+	public LoginResponseDTO getAdminDetails(LoginDTO loginDTO) throws MedicalClaimException {
 
 		log.info("Inside LoginServiceImpl");
 
@@ -49,7 +51,7 @@ public class LoginServiceImpl implements LoginService {
 
 		LoginResponseDTO loginResponseDTO = null;
 
-		if (userName.equals("") || password.equals("")) {
+		if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
 
 			throw new MedicalClaimException(CREDENTIALS_EMPTY);
 

@@ -14,6 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.LoginServiceImpl;
 import com.medical.util.MedicalClaimConstants;
 
@@ -31,7 +32,7 @@ public class LoginControllerTest {
 	LoginController loginController;
 	
 	@Test
-	public void testGetAdmin() {
+	public void testGetAdmin() throws MedicalClaimException {
 		LoginDTO loginDTO = new LoginDTO();
 		loginDTO.setAdminName("Mahesh");
 		loginDTO.setAdminPassword("mahesh");

@@ -65,10 +65,11 @@ public class PolicyControllerTest {
 	/**
 	 * @apiNote test case for Controller policy() method
 	 * @return PolicyResponseDto
+	 * @throws MedicalClaimException 
 	 */
 	
 	@Test
-	public void testPolicy() {
+	public void testPolicy() throws MedicalClaimException {
 		
 		Mockito.when(policyServiceImpl.claimService(policyRequestDto)).thenReturn(policyResponseDto);
 		ResponseEntity<PolicyResponseDto> actualPolicyResponseDto=policyController.policy(policyRequestDto);
@@ -77,11 +78,12 @@ public class PolicyControllerTest {
 	}
 	
 	/**
+	 * @throws MedicalClaimException 
 	 * @apiNote negative test case for Controller policy() method
 	 * @throws UserNotFound
 	 */
 	@Test(expected = MedicalClaimException.class)
-	public void testPolicyException() {
+	public void testPolicyException() throws MedicalClaimException {
 		Mockito.when(policyServiceImpl.claimService(policyRequestDto)).thenThrow(MedicalClaimException.class);
 		ResponseEntity<PolicyResponseDto> policyResponse=policyController.policy(policyRequestDto);
 		

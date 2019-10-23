@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.medical.dto.PolicyRequestDto;
 import com.medical.dto.PolicyResponseDto;
+import com.medical.exception.MedicalClaimException;
 import com.medical.service.PolicyService;
 
 /**
@@ -39,10 +40,11 @@ public class PolicyController {
 	 * 
 	 * @param PolicyRequestDto
 	 * @return PolicyResponseDto which returns userId,message, statusCode
+	 * @throws MedicalClaimException 
 	 */
 
 	@PostMapping("/policies")
-	public ResponseEntity<PolicyResponseDto> policy(@RequestBody PolicyRequestDto policyRequestDto) {
+	public ResponseEntity<PolicyResponseDto> policy(@RequestBody PolicyRequestDto policyRequestDto) throws MedicalClaimException {
 		lOGGER.info("inside policy controller");
 		return new ResponseEntity<>(policyService.claimService(policyRequestDto), HttpStatus.ACCEPTED);
 
