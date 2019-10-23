@@ -1,8 +1,4 @@
-/**
- * @author shiva
- * @version 1.0 
- * This class adds the  medical claims
- */
+
 package com.medical.controller;
 
 import javax.validation.Valid;
@@ -22,6 +18,13 @@ import com.medical.dto.ClaimDTO;
 import com.medical.dto.ResponseDto;
 import com.medical.exception.MedicalClaimException;
 import com.medical.service.AddClaimService;
+
+/**
+ * This class adds the  medical claims
+ * @author shiva
+ * @version 1.0 
+ * 
+ */
 
 @RestController
 @RequestMapping("/api")

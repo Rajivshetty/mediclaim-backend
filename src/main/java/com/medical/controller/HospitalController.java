@@ -32,7 +32,6 @@ public class HospitalController {
 	HospitalService hospitalService;
 	
 	/**
-	 * @author Abhishek C
 	 * @apiNote controller to fetch list of hospitals
 	   @return list of hospitals
 	 */

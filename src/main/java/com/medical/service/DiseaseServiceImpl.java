@@ -29,7 +29,6 @@ public class DiseaseServiceImpl implements DiseaseService {
 	DiseaseRepository diseaseRepository;
 	
 	/**
-	 * @author Abhishek C
 	 * @apiNote getDiseaseList method to fetch list of diseases
 	   @return list of hospitals
 	   @throws DiseaseNotFoundException

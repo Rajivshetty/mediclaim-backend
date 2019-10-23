@@ -29,7 +29,6 @@ public class HospitaServiceImpl implements HospitalService {
 	HospitalRepository hospitalRepository;
 	
 	/**
-	 * @author Abhishek C
 	 * @apiNote controller to fetch list of hospitals
 	   @return list of hospitals
 	   @throws HospitalNotFoundException
