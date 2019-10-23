@@ -28,15 +28,12 @@ import com.medical.repository.LoginRepository;
 @RunWith(MockitoJUnitRunner.class)
 public class LoginServiceImplTest {
 
-	
 	@Mock
 	LoginRepository loginRepository;
 	@InjectMocks
 	LoginServiceImpl loginServiceImpl;
-	
-	
-	Role roll = null;
 
+	Role roll = null;
 
 	@Before
 	public void setup() {
@@ -48,13 +45,12 @@ public class LoginServiceImplTest {
 
 	}
 
-
-
 	@Test
 	public void testGetAdminDetails() throws MedicalClaimException {
 
 		LoginDTO loginDTO = new LoginDTO();
-		loginDTO.setAdminName("Mahesh");;
+		loginDTO.setAdminName("Mahesh");
+		;
 		loginDTO.setAdminPassword("mahesh");
 		LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
 		loginResponseDTO.setStatusCode(201);
@@ -62,8 +58,6 @@ public class LoginServiceImplTest {
 				.thenReturn(Optional.of(roll));
 		LoginResponseDTO actualValue = loginServiceImpl.getAdminDetails(loginDTO);
 		assertEquals(loginResponseDTO.getStatusCode(), actualValue.getStatusCode());
-
-
 
 	}
 

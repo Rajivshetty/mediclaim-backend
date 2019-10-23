@@ -31,7 +31,6 @@ public class HospitalController {
 	HospitalService hospitalService;
 
 	/**
-	 * 
 	 * @apiNote controller to fetch list of hospitals
 	 * @return list of HospitalResponseDto
 	 */
