@@ -41,7 +41,6 @@ public class Claim {
 	private Integer approverId;
 	private String apprStatus;
 	private String comments;
-	private String status;
 	private LocalDate claimReqDate;
 
 }

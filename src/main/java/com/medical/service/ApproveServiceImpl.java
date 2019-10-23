@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
@@ -61,35 +62,29 @@ public class ApproveServiceImpl implements ApproveService {
 		log.debug("getMyApproves method in ApproveServiceImpl class");
 
 		List<ClaimResDto> claimList = new ArrayList<>();
-
 		List<Claim> claim = claimRepo.findAllByOrderByPatientName();
-		claim.stream().forEach(c -> {
-			if (approverId.equals(MedicalClaimConstants.APPROVER_ID)) {
-				if (c.getApprStatus().equals(MedicalClaimConstants.PENDING)) {
-					ClaimResDto cl = new ClaimResDto();
-					BeanUtils.copyProperties(c, cl);
-					cl.setApprStatus(c.getApprStatus());
-					Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
-					cl.setDiseaseName(disease.get().getDiseaseName());
-					cl.setLimitAmount(disease.get().getLimitAmount());
-					Optional<Hospital> hospital = hospitalRepo.findById(c.getHospitalId());
-					cl.setHospitalName(hospital.get().getHospitalName());
-					cl.setClaimId(c.getClaimId());
-					claimList.add(cl);
-				}
-			} else {
-				ClaimResDto cl = new ClaimResDto();
-				BeanUtils.copyProperties(c, cl);
-				cl.setApprStatus(c.getApprStatus());
-				Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
-				cl.setDiseaseName(disease.get().getDiseaseName());
-				cl.setLimitAmount(disease.get().getLimitAmount());
-				Optional<Hospital> hospital = hospitalRepo.findById(c.getHospitalId());
-				cl.setHospitalName(hospital.get().getHospitalName());
-				cl.setClaimId(c.getClaimId());
-				claimList.add(cl);
-			}
+		List<Claim> claims = new ArrayList<>();
 
+		if (approverId == MedicalClaimConstants.APPROVER_ID) {
+			claims = claim.stream().filter(line -> line.getApprStatus().equals(MedicalClaimConstants.PENDING))
+					.collect(Collectors.toList());
+		} else {
+			claims = claim.stream()
+					.filter(line -> (line.getApprStatus().equals(MedicalClaimConstants.APPROVED)
+							|| line.getApprStatus().equals(MedicalClaimConstants.REJECTED)))
+					.collect(Collectors.toList());
+		}
+		claims.forEach(c -> {
+			ClaimResDto cl = new ClaimResDto();
+			BeanUtils.copyProperties(c, cl);
+			cl.setApprStatus(c.getApprStatus());
+			Optional<Disease> disease = diseaseRepo.findById(c.getDiseaseId());
+			cl.setDiseaseName(disease.get().getDiseaseName());
+			cl.setLimitAmount(disease.get().getLimitAmount());
+			Optional<Hospital> hospital = hospitalRepo.findById(c.getHospitalId());
+			cl.setHospitalName(hospital.get().getHospitalName());
+			cl.setClaimId(c.getClaimId());
+			claimList.add(cl);
 		});
 
 		return claimList;
@@ -106,9 +101,10 @@ public class ApproveServiceImpl implements ApproveService {
 	 */
 	@Override
 	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) {
-		System.out.println(approveReqDto);
 		log.debug("approveClaim method in ApproveServiceImpl class");
+
 		Optional<Claim> claim = claimRepo.findByClaimId(approveReqDto.getClaimId());
+
 		if (claim.isPresent()) {
 
 			claim.get().setApprStatus(approveReqDto.getStatus());
