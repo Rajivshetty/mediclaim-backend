@@ -16,8 +16,11 @@ import com.medical.dto.DiseaseResponseDto;
 import com.medical.service.DiseaseService;
 
 /**
- * @author Abhishek C
+ *
  * @apiNote controller used to fetch diseases
+ * @author Abhishek C
+ * @version 1.0 
+ * @since   2019-10-21
  * 
  */
 @RestController
@@ -32,7 +35,8 @@ public class DiseaseController {
 
 	/**
 	 * 
-	 * @apiNote controller to fetch list of diseases
+	 * @apiNote getDiseaseList method is used to fetch list of diseases
+	 * @param no parameters
 	 * @return list of diseases
 	 */
 	@GetMapping("/diseases")

@@ -56,8 +56,8 @@ public class HospitalServiceImplTest {
 	}
 	
 	/**
-	 * @author Abhishek C
-	 * @apiNote test case for GetHospitalList() method
+	 * test case for GetHospitalList() method
+	 * @param no parameters
 	 * @return list of hospitals
 	 */
 	@Test
@@ -68,12 +68,12 @@ public class HospitalServiceImplTest {
 	}
 	
 	/**
-	 * @author Abhishek C
 	 * @apiNote negative test case for GetHospitalList() method
+	 * @param no parameters
 	 * @throws HospitalNotFoundException
 	 */
 	@Test(expected = HospitalNotFoundException.class)
-	public void borrowedEndDateNegativeTest() {
+	public void negativeTestGetHospitalList() {
 		Mockito.when(hospitalRepository.findAll()).thenThrow(HospitalNotFoundException.class);
 		list = hospitalServiceImpl.getHospitalList();
 		assertNotNull(list);

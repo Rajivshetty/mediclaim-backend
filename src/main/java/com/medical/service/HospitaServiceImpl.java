@@ -16,9 +16,10 @@ import com.medical.repository.HospitalRepository;
 import com.medical.util.MedicalClaimConstants;
 
 /**
+ * HospitaServiceImpl is used to fetch list of Hospitals
  * @author Abhishek C
- * @since 1.0
- * @apiNote HospitaServiceImpl used to fetch Hospitals
+ * @version 1.0
+ * @since 2019-10-21
  * 
  */
 @Service
@@ -31,7 +32,7 @@ public class HospitaServiceImpl implements HospitalService {
 
 	/**
 	 * 
-	 * @apiNote controller to fetch list of hospitals
+	 * getHospitalList method is used to fetch list of hospitals
 	 * @return list of hospitals
 	 * @throws HospitalNotFoundException
 	 */

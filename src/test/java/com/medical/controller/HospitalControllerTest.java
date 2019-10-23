@@ -21,21 +21,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medical.dto.HospitalResponseDto;
 import com.medical.service.HospitalService;
 
+/**
+ * HospitalControllerTest is used to test HospitalController.class
+ * 
+ * @author Abhishek C
+ *
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = HospitalController.class)
 public class HospitalControllerTest {
-	
+
 	@Autowired
 	MockMvc mockMvc;
-	
+
 	@MockBean
 	HospitalService hospitalService;
-	
+
 	HospitalResponseDto responseDto;
 	List<HospitalResponseDto> list;
-	
+
 	/**
-	 * @author Abhishek C
 	 * Initial set up
 	 */
 	@Before
@@ -46,15 +51,28 @@ public class HospitalControllerTest {
 		responseDto.setHospitalName("AIIMS ( All India Institutes of Medical Sciences)");
 		list.add(responseDto);
 	}
-	
+
+	/**
+	 * testGetHospitals is used to test getHospitalList() method in
+	 * HospitalController.class
+	 * @Param no parameters
+	 * @return nothing
+	 * @throws JsonProcessingException
+	 */
 	@Test
 	public void testGetHospitals() throws JsonProcessingException, Exception {
 		Mockito.when(hospitalService.getHospitalList()).thenReturn(list);
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/hospitals/").contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(list))).andExpect(MockMvcResultMatchers.status().isOk());
 	}
-	
-	public static String asJsonString(final Object obj) throws JsonProcessingException {
-		return new ObjectMapper().writeValueAsString(obj);
+
+	/**
+	 * Method that can be used to serialize any Java value as a String
+	 * @Param object parameter 
+	 * @return String
+	 * @Throws JsonProcessingException
+	 */
+	public static String asJsonString(final Object object) throws JsonProcessingException {
+		return new ObjectMapper().writeValueAsString(object);
 	}
 }

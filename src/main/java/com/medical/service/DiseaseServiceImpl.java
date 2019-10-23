@@ -16,9 +16,10 @@ import com.medical.repository.DiseaseRepository;
 import com.medical.util.MedicalClaimConstants;
 
 /**
+ * DiseaseServiceImpl used to fetch list of diseases
  * @author Abhishek C
- * @apiNote DiseaseServiceImpl used to fetch diseases
- * 
+ * @version 1.0
+ * @since 2019-10-21
  */
 @Service
 public class DiseaseServiceImpl implements DiseaseService {
@@ -29,7 +30,7 @@ public class DiseaseServiceImpl implements DiseaseService {
 	DiseaseRepository diseaseRepository;
 
 	/**
-	 * @apiNote getDiseaseList method to fetch list of diseases
+	 * getDiseaseList method is used to fetch list of diseases
 	 * @return list of hospitals
 	 * @throws DiseaseNotFoundException
 	 */

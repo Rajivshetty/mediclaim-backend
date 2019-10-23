@@ -21,8 +21,8 @@ import com.medical.exception.HospitalNotFoundException;
 import com.medical.repository.DiseaseRepository;
 
 /**
+ * Unit test case for DiseaseServiceImpl service
  * @author Abhishek C
- * @apiNote test case for DiseaseServiceImpl service
  */
 
 @RunWith(MockitoJUnitRunner.class)
@@ -40,7 +40,6 @@ public class DiseaseServiceImplTest {
 	List<DiseaseResponseDto> diseases;
 	
 	/**
-	 * @author Abhishek C
 	 * Initial set up
 	 */
 	@Before
@@ -58,7 +57,7 @@ public class DiseaseServiceImplTest {
 	}
 	/**
 	 * @author Abhishek C
-	 * @apiNote test case for testGetDiseasesList() method
+	 * test case for testGetDiseasesList() method
 	 * @return list of diseases
 	 */
 	@Test
@@ -68,12 +67,13 @@ public class DiseaseServiceImplTest {
 		assertNotNull(list);
 	}
 	/**
-	 * @author Abhishek C
-	 * @apiNote negative test case for GetHospitalList() method
+	 * negative test case for GetDiseasesList() method
+	 * @param no parameters
+	 * @return nothing
 	 * @throws HospitalNotFoundException
 	 */
 	@Test(expected = DiseaseNotFoundException.class)
-	public void borrowedEndDateNegativeTest() {
+	public void negativeTestGetDiseasesList() {
 		Mockito.when(diseaseRepository.findAll()).thenThrow(DiseaseNotFoundException.class);
 		diseases = diseaseServiceImpl.getDiseaseList();
 		assertNotNull(diseases);

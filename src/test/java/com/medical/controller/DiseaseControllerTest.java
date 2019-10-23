@@ -21,40 +21,61 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medical.dto.DiseaseResponseDto;
 import com.medical.service.DiseaseService;
 
+/**
+ * DiseaseControllerTest is used to test DiseaseController.class
+ * 
+ * @author Abhishek C
+ *
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = DiseaseController.class)
 public class DiseaseControllerTest {
-	
+
 	@Autowired
 	MockMvc mockMvc;
-	
+
 	@MockBean
 	DiseaseService diseaseService;
-	
+
 	DiseaseResponseDto responseDto;
 	List<DiseaseResponseDto> list;
-	
+
 	/**
-	 * @author Abhishek C
 	 * Initial set up
 	 */
 	@Before
 	public void setup() {
 		responseDto = new DiseaseResponseDto();
 		list = new ArrayList<DiseaseResponseDto>();
-		responseDto.setDiseaseId(1);;
+		responseDto.setDiseaseId(1);
+		;
 		responseDto.setDiseaseName("Heart Stroke");
 		responseDto.setLimitAmount(10000.00);
 		list.add(responseDto);
 	}
+
+	/**
+	 * testGetDiseasesList is used to test getDiseaseList() method in
+	 * DiseaseController.class
+	 * 
+	 * @Param no parameters
+	 * @return nothing
+	 * @throws JsonProcessingException
+	 */
 	@Test
-	public void testGetHospitals() throws JsonProcessingException, Exception {
+	public void testGetDiseasesList() throws JsonProcessingException, Exception {
 		Mockito.when(diseaseService.getDiseaseList()).thenReturn(list);
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/diseases/").contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(list))).andExpect(MockMvcResultMatchers.status().isOk());
 	}
-	
-	public static String asJsonString(final Object obj) throws JsonProcessingException {
-		return new ObjectMapper().writeValueAsString(obj);
+
+	/**
+	 * Method that can be used to serialize any Java value as a String
+	 * @Param object parameter
+	 * @return String
+	 * @Throws JsonProcessingException
+	 */
+	public static String asJsonString(final Object object) throws JsonProcessingException {
+		return new ObjectMapper().writeValueAsString(object);
 	}
 }

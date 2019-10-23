@@ -16,9 +16,11 @@ import com.medical.dto.HospitalResponseDto;
 import com.medical.service.HospitalService;
 
 /**
+ *
+ * @apiNote controller used to fetch list of Hospitals
  * @author Abhishek C
- * @apiNote controller used to fetch Hospitals
- * 
+ * @version 1.0 
+ * @since   2019-10-21
  */
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
@@ -32,8 +34,9 @@ public class HospitalController {
 
 	/**
 	 * 
-	 * @apiNote controller to fetch list of hospitals
-	 * @return list of HospitalResponseDto
+	 * @apiNote getHospitals method is used to fetch list of hospitals
+	 * @param no parameters
+	 * @return list of hospitals
 	 */
 	@GetMapping("/hospitals")
 	public ResponseEntity<List<HospitalResponseDto>> getHospitals() {

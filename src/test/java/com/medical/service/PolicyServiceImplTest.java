@@ -94,7 +94,7 @@ public class PolicyServiceImplTest {
 	@Test(expected = MedicalClaimException.class)
 	public void testClaimServiceException() throws MedicalClaimException {
 		
-		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenThrow(MedicalClaimException.class);
+		//Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenThrow(MedicalClaimException.class);
 		PolicyResponseDto policyResponse=policyServiceImpl.claimService(policyRequestDto);
 		assertNotNull(policyResponse);
 
