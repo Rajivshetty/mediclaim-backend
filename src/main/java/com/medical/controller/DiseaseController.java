@@ -33,7 +33,7 @@ public class DiseaseController {
 	/**
 	 * 
 	 * @apiNote controller to fetch list of diseases
-	 * @return list of hospitals
+	 * @return list of diseases
 	 */
 	@GetMapping("/diseases")
 	public ResponseEntity<List<DiseaseResponseDto>> getDiseaseList() {

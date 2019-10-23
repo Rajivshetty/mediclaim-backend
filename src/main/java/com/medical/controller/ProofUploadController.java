@@ -33,6 +33,14 @@ public class ProofUploadController {
 	@Autowired
 	ProofUploadService proofUploadService;
 
+	/**
+	 * This method used to upload the document for proof to the approver while
+	 * approving/rejecting
+	 * 
+	 * @param file
+	 * @param redirectAttributes
+	 * @return string
+	 */
 	@PostMapping("/upload")
 	public ResponseEntity<String> singleFileUpload(@RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes) {

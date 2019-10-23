@@ -1,7 +1,4 @@
-/**
- * @author mahesh
- *
- */
+
 package com.medical.service;
 
 import static com.medical.util.MedicalClaimConstants.CREDENTIALS_EMPTY;
@@ -23,6 +20,11 @@ import com.medical.repository.LoginRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author mahesh
+ * @since 1.0
+ *
+ */
 @Service
 @Slf4j
 public class LoginServiceImpl implements LoginService {
@@ -52,12 +54,8 @@ public class LoginServiceImpl implements LoginService {
 		LoginResponseDTO loginResponseDTO = null;
 
 		if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
-
 			throw new MedicalClaimException(CREDENTIALS_EMPTY);
-
-		}
-
-		else {
+		} else {
 			Optional<Role> role = loingRepository.findByAdminNameAndAdminPassword(userName, password);
 			if (role.isPresent()) {
 				loginResponseDTO = new LoginResponseDTO();
@@ -66,16 +64,10 @@ public class LoginServiceImpl implements LoginService {
 				loginResponseDTO.setMessage(LOGIN_SUCCESS);
 				loginResponseDTO.setStatusCode(LOGIN_SUCCESS_CODE);
 
-			}
-
-			else {
-
+			} else {
 				throw new MedicalClaimException(LOGIN_FAILURE);
-
 			}
-
 		}
-
 		return loginResponseDTO;
 	}
 

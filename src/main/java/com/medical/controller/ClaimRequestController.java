@@ -25,7 +25,6 @@ import com.medical.service.AddClaimService;
  * @version 1.0 
  * 
  */
-
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = { "*", "*/" }, allowedHeaders = { "*", "*/" })

@@ -1,9 +1,3 @@
-/**
- * @author Shiva
-   @version 1.0
-   This class adds the claims
- *
- */
 package com.medical.service;
 
 import java.time.LocalDate;
@@ -27,6 +21,11 @@ import com.medical.repository.DiseaseRepository;
 import com.medical.repository.UserRepository;
 import com.medical.util.MedicalClaimConstants;
 
+/**
+ * @author Shiva
+ * @version 1.0 This class adds the claims
+ *
+ */
 @Service
 public class AddClaimServiceImpl implements AddClaimService {
 

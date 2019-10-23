@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.medical.service;
 
 import java.util.Optional;
@@ -19,6 +17,7 @@ import com.medical.util.MedicalClaimConstants;
 
 /**
  * @author akash
+ * @since 1.0
  *
  */
 
@@ -26,18 +25,18 @@ import com.medical.util.MedicalClaimConstants;
 public class PolicyServiceImpl implements PolicyService {
 
 	public static final Logger lOGGER = LoggerFactory.getLogger(PolicyServiceImpl.class);
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
-	
+
 	/**
 	 * This method is intended to user policy with proper credentials
 	 *
 	 * @param PolicyRequestDto
 	 *            is the input object which have policyNo, aadharNo,DOB
+	 * @param PolicyRequestDto is the input object which have policyNo, aadharNo,DOB
 	 * @return PolicyResponseDto which returns userId,message, statusCode
-	 * @throws MedicalClaimException 
+	 * @throws MedicalClaimException
 	 */
 
 	@Override
@@ -55,7 +54,7 @@ public class PolicyServiceImpl implements PolicyService {
 
 		if (!user.get().getDob().isEqual(policyRequestDto.getDob())) {
 			throw new MedicalClaimException(MedicalClaimConstants.INVALID_DOB_NUMBER);
-		} 
+		}
 
 		lOGGER.debug("after validation in policy service");
 		PolicyResponseDto policyResponseDto = new PolicyResponseDto();
@@ -64,6 +63,5 @@ public class PolicyServiceImpl implements PolicyService {
 		policyResponseDto.setStatusCode(MedicalClaimConstants.POLICY_STATUS_CODE);
 		return policyResponseDto;
 	}
-	
 
 }

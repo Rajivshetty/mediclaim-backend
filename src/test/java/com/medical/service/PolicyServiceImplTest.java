@@ -68,11 +68,11 @@ public class PolicyServiceImplTest {
 		policyResponseDto.setStatusCode(MedicalClaimConstants.POLICY_STATUS_CODE);
 
 	}
-	
+
 	/**
 	 * @apiNote test case for claimService() method
 	 * @return PolicyResponseDto
-	 * @throws MedicalClaimException 
+	 * @throws MedicalClaimException
 	 */
 
 	@Test
@@ -83,20 +83,60 @@ public class PolicyServiceImplTest {
 		assertEquals(policyResponseDto.getStatusCode(), actualResponseDto.getStatusCode());
 
 	}
-	
-	
+
 	/**
-	 * @throws MedicalClaimException 
+	 * @throws MedicalClaimException
 	 * @apiNote negative test case for claimService() method
 	 * @throws PolicyNotFound
 	 */
 
 	@Test(expected = MedicalClaimException.class)
 	public void testClaimServiceException() throws MedicalClaimException {
-		
-		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenThrow(MedicalClaimException.class);
-		PolicyResponseDto policyResponse=policyServiceImpl.claimService(policyRequestDto);
+
+		//Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenThrow(MedicalClaimException.class);
+		PolicyResponseDto policyResponse = policyServiceImpl.claimService(policyRequestDto);
 		assertNotNull(policyResponse);
+
+	}
+	
+	@Test(expected = MedicalClaimException.class)
+	public void testClaimServiceExceptionAadhar() throws MedicalClaimException {
+	
+		User user = new User();
+		user.setUserId(1);
+		user.setAadharNo(102l);
+		user.setDob(LocalDate.now());
+		user.setPolicyNo(10);
+		PolicyRequestDto policyRequestDto=new PolicyRequestDto();
+		policyRequestDto.setPolicyNo(10);
+		policyRequestDto.setAadharNo(123);
+		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenReturn(Optional.of(user));
+		
+		
+		policyServiceImpl.claimService(policyRequestDto);
+	
+		
+
+	}
+	
+	@Test(expected = MedicalClaimException.class)
+	public void testClaimServiceExceptionDob() throws MedicalClaimException {
+	
+		User user = new User();
+		user.setUserId(1);
+		user.setAadharNo(102l);
+		user.setDob(LocalDate.now());
+		user.setPolicyNo(10);
+		PolicyRequestDto policyRequestDto=new PolicyRequestDto();
+		policyRequestDto.setPolicyNo(10);
+		policyRequestDto.setAadharNo(102l);
+		policyRequestDto.setDob(LocalDate.of(2001, 02, 01));
+		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenReturn(Optional.of(user));
+		
+		
+		policyServiceImpl.claimService(policyRequestDto);
+	
+		
 
 	}
 

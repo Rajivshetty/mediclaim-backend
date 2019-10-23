@@ -19,7 +19,7 @@ import com.medical.exception.MedicalClaimException;
 @Service
 public interface ApproveService {
 
-	List<ClaimResDto> claimList(@NotNull Integer approverId);
+	List<ClaimResDto> claimList(@NotNull Integer approverId) throws MedicalClaimException;
 
 	ApproveResDto approveClaim(ApproveReqDto approveReqDto) throws MedicalClaimException;
 

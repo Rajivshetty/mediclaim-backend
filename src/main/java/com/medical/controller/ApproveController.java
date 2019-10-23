@@ -2,6 +2,7 @@ package com.medical.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +44,11 @@ public class ApproveController {
 	 * 
 	 * @param approverId
 	 * @return ClaimResDto (claim details)
+	 * @throws MedicalClaimException 
 	 */
 
 	@GetMapping("/approvers/{approverId}/claims")
-	public ResponseEntity<List<ClaimResDto>> claimList(@NotNull @PathVariable Integer approverId) {
+	public ResponseEntity<List<ClaimResDto>> claimList(@Valid @NotNull @PathVariable Integer approverId) throws MedicalClaimException {
 		log.info("claimList method in ApproveController");
 		return new ResponseEntity<>(approveService.claimList(approverId), HttpStatus.OK);
 	}
@@ -61,7 +63,7 @@ public class ApproveController {
 	 */
 
 	@PostMapping("/approvers")
-	public ResponseEntity<ApproveResDto> approveClaim(@NotNull @RequestBody ApproveReqDto approveReqDto)
+	public ResponseEntity<ApproveResDto> approveClaim(@Valid @NotNull @RequestBody ApproveReqDto approveReqDto)
 			throws MedicalClaimException {
 
 		log.debug("approveClaim method in ApproveController");

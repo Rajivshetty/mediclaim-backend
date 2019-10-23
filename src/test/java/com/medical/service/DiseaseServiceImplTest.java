@@ -27,20 +27,19 @@ import com.medical.repository.DiseaseRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DiseaseServiceImplTest {
-	
+
 	@InjectMocks
 	DiseaseServiceImpl diseaseServiceImpl;
-	
+
 	@Mock
 	DiseaseRepository diseaseRepository;
-	
+
 	Disease disease;
 	DiseaseResponseDto diseaseResponseDto;
 	List<Disease> list;
 	List<DiseaseResponseDto> diseases;
-	
+
 	/**
-	 * @author Abhishek C
 	 * Initial set up
 	 */
 	@Before
@@ -56,8 +55,8 @@ public class DiseaseServiceImplTest {
 		list.add(disease);
 		diseases.add(diseaseResponseDto);
 	}
+
 	/**
-	 * @author Abhishek C
 	 * @apiNote test case for testGetDiseasesList() method
 	 * @return list of diseases
 	 */
@@ -67,8 +66,8 @@ public class DiseaseServiceImplTest {
 		diseases = diseaseServiceImpl.getDiseaseList();
 		assertNotNull(list);
 	}
+
 	/**
-	 * @author Abhishek C
 	 * @apiNote negative test case for GetHospitalList() method
 	 * @throws HospitalNotFoundException
 	 */

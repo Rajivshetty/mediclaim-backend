@@ -83,9 +83,9 @@ public class ApproveServiceImplTest {
 	}
 
 	@Test
-	public void testClaimList() {
+	public void testClaimList() throws MedicalClaimException {
 
-		Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(claimList);
+		Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimList));
 
 		Mockito.when(diseaseRepo.findById(Mockito.anyInt())).thenReturn(Optional.of(disease));
 		Mockito.when(hospitalRepo.findById(Mockito.anyInt())).thenReturn(Optional.of(hospital));
@@ -97,14 +97,14 @@ public class ApproveServiceImplTest {
 	}
 
 	@Test
-	public void testClaimListElse() {
+	public void testClaimListElse() throws MedicalClaimException {
 
-		Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(claimList);
+		Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimList));
 
 		Mockito.when(diseaseRepo.findById(Mockito.anyInt())).thenReturn(Optional.of(disease));
 		Mockito.when(hospitalRepo.findById(Mockito.anyInt())).thenReturn(Optional.of(hospital));
 
-		List<ClaimResDto> actualValue = approveServiceImpl.claimList(2);
+		List<ClaimResDto> actualValue = approveServiceImpl.claimList(1);
 
 		assertEquals(claimResDtoList.size(), actualValue.size());
 

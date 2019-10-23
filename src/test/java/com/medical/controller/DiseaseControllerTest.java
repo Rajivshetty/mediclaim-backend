@@ -21,39 +21,43 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medical.dto.DiseaseResponseDto;
 import com.medical.service.DiseaseService;
 
+/**
+ * @author Abhishek C
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = DiseaseController.class)
 public class DiseaseControllerTest {
-	
+
 	@Autowired
 	MockMvc mockMvc;
-	
+
 	@MockBean
 	DiseaseService diseaseService;
-	
+
 	DiseaseResponseDto responseDto;
 	List<DiseaseResponseDto> list;
-	
+
 	/**
-	 * @author Abhishek C
 	 * Initial set up
 	 */
 	@Before
 	public void setup() {
 		responseDto = new DiseaseResponseDto();
 		list = new ArrayList<DiseaseResponseDto>();
-		responseDto.setDiseaseId(1);;
+		responseDto.setDiseaseId(1);
+		;
 		responseDto.setDiseaseName("Heart Stroke");
 		responseDto.setLimitAmount(10000.00);
 		list.add(responseDto);
 	}
+
 	@Test
 	public void testGetHospitals() throws JsonProcessingException, Exception {
 		Mockito.when(diseaseService.getDiseaseList()).thenReturn(list);
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/diseases/").contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(list))).andExpect(MockMvcResultMatchers.status().isOk());
 	}
-	
+
 	public static String asJsonString(final Object obj) throws JsonProcessingException {
 		return new ObjectMapper().writeValueAsString(obj);
 	}
