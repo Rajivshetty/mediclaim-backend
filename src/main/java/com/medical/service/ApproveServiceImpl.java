@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 
  * @author mahesh
+ * @since 1.0
  *
  */
 @Service
@@ -73,7 +74,7 @@ public class ApproveServiceImpl implements ApproveService {
 					cl.setDiseaseName(disease.get().getDiseaseName());
 					cl.setLimitAmount(disease.get().getLimitAmount());
 					Optional<Hospital> hospital = hospitalRepo.findById(c.getHospitalId());
-					log.info("HospitalId:{}",c.getHospitalId());
+					log.info("HospitalId:{}", c.getHospitalId());
 					cl.setHospitalName(hospital.get().getHospitalName());
 					cl.setClaimId(c.getClaimId());
 					claimList.add(cl);
@@ -97,14 +98,11 @@ public class ApproveServiceImpl implements ApproveService {
 	}
 
 	/**
-	 * this method is used to approve the claim and update the status,comments
+	 * this method is used to approve the claim
 	 * 
-	 * @param approverId
-	 * @param claimId
-	 * @param status
-	 * @param comment
+	 * @param ApproveReqDto
 	 * @return ApproveResDto
-	 * @throws MedicalClaimException 
+	 * @throws MedicalClaimException
 	 */
 	@Override
 	public ApproveResDto approveClaim(ApproveReqDto approveReqDto) throws MedicalClaimException {

@@ -1,7 +1,4 @@
-/**
- * @author mahesh
- *
- */
+
 package com.medical.service;
 
 import static com.medical.util.MedicalClaimConstants.CREDENTIALS_EMPTY;
@@ -23,6 +20,11 @@ import com.medical.repository.LoginRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author mahesh
+ * @since 1.0
+ *
+ */
 @Service
 @Slf4j
 public class LoginServiceImpl implements LoginService {

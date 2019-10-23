@@ -42,7 +42,7 @@ public class ApproveController {
 	 * this method is used to get claim details based on approved id
 	 * 
 	 * @param approverId
-	 * @return ClaimResDto (claim details)
+	 * @return List of ClaimResDto (claim details)
 	 */
 
 	@GetMapping("/approvers/{approverId}/claims")

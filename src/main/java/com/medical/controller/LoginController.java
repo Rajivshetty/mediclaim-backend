@@ -36,6 +36,7 @@ public class LoginController {
 	 * This method is used for Admin login to approve claim
 	 * 
 	 * @param LoginDTO
+	 * @return LoginResponseDTO
 	 * @throws MedicalClaimException 
 	 */
 	@PostMapping("/login")
