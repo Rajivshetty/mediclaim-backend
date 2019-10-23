@@ -73,8 +73,6 @@ public class ApproveServiceImpl implements ApproveService {
 			throw new MedicalClaimException(MedicalClaimConstants.RECORD_NOT_FOUND);
 		}
 		
-
-		if (approverId.equals(MedicalClaimConstants.APPROVER_ID)) {
 		 claims = new ArrayList<>();
 
 		if (approverId .equals(MedicalClaimConstants.APPROVER_ID)) {
@@ -105,7 +103,7 @@ public class ApproveServiceImpl implements ApproveService {
 			cl.setClaimId(c.getClaimId());
 			claimList.add(cl);
 		});
-		}
+		
 		return claimList;
 	}
 

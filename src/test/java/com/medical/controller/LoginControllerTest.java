@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import com.medical.dto.LoginDTO;
 import com.medical.dto.LoginResponseDTO;
@@ -44,8 +45,8 @@ public class LoginControllerTest {
 		loginResponseDTO.setStatusCode(MedicalClaimConstants.LOGIN_SUCCESS_CODE);
 
 		Mockito.when(loginServiceImpl.getAdminDetails(loginDTO)).thenReturn(loginResponseDTO);
-		LoginResponseDTO actualValue = loginServiceImpl.getAdminDetails(loginDTO);
-		assertEquals(loginResponseDTO.getStatusCode(), actualValue.getStatusCode());
+		ResponseEntity<LoginResponseDTO> actualValue = loginController.getAdmin(loginDTO);
+		assertEquals(loginResponseDTO.getStatusCode(), actualValue.getBody().getStatusCode());
 	}
 
 }
