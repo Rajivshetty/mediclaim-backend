@@ -22,27 +22,26 @@ import com.medical.util.MedicalClaimConstants;
  */
 @Service
 public class DiseaseServiceImpl implements DiseaseService {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(DiseaseServiceImpl.class);
-	
+
 	@Autowired
 	DiseaseRepository diseaseRepository;
-	
+
 	/**
-	 * @author Abhishek C
 	 * @apiNote getDiseaseList method to fetch list of diseases
-	   @return list of hospitals
-	   @throws DiseaseNotFoundException
+	 * @return list of hospitals
+	 * @throws DiseaseNotFoundException
 	 */
 	@Override
 	public List<DiseaseResponseDto> getDiseaseList() {
 		LOGGER.debug("DiseaseServiceImpl getDiseaseList()");
 		List<Disease> list = diseaseRepository.findAll();
-		if(list.isEmpty()) {
+		if (list.isEmpty()) {
 			throw new DiseaseNotFoundException(MedicalClaimConstants.DISEASE_NOT_FOUND);
 		}
 		List<DiseaseResponseDto> diseasesList = new ArrayList<>();
-		list.stream().forEach(e ->{
+		list.stream().forEach(e -> {
 			DiseaseResponseDto response = new DiseaseResponseDto();
 			BeanUtils.copyProperties(e, response);
 			diseasesList.add(response);

@@ -1,8 +1,4 @@
-/**
- * @author shiva
- * @version 1.0 
- * This class adds the  medical claims
- */
+
 package com.medical.controller;
 
 import javax.validation.Valid;
@@ -23,6 +19,12 @@ import com.medical.dto.ResponseDto;
 import com.medical.exception.MedicalClaimException;
 import com.medical.service.AddClaimService;
 
+/**
+ * @author shiva
+ * @version 1.0
+ * 
+ * This class adds the medical claims
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = { "*", "*/" }, allowedHeaders = { "*", "*/" })

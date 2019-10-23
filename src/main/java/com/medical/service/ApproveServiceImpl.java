@@ -32,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 
  * @author mahesh
+ * @since 1.0
  *
  */
 @Service
@@ -102,12 +103,9 @@ public class ApproveServiceImpl implements ApproveService {
 	}
 
 	/**
-	 * this method is used to approve the claim and update the status,comments
+	 * this method is used to approve the claim
 	 * 
-	 * @param approverId
-	 * @param claimId
-	 * @param status
-	 * @param comment
+	 * @param ApproveReqDto
 	 * @return ApproveResDto
 	 * @throws MedicalClaimException
 	 */
