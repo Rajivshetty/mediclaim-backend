@@ -54,16 +54,16 @@ public class ApproveController {
 	/**
 	 * this method is used to approve the claim details
 	 * 
-	 * @param approverId
-	 * @param claimId
-	 * @param status
-	 * @param comment
+	 * @param ApproveReqDto
 	 * @return ApproveResDto
+	 * 
 	 * @throws MedicalClaimException
 	 */
+
 	@PostMapping("/approvers")
 	public ResponseEntity<ApproveResDto> approveClaim(@NotNull @RequestBody ApproveReqDto approveReqDto)
 			throws MedicalClaimException {
+
 		log.debug("approveClaim method in ApproveController");
 		return new ResponseEntity<>(approveService.approveClaim(approveReqDto), HttpStatus.OK);
 	}

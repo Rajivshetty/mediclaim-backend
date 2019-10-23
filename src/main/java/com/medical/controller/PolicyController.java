@@ -3,6 +3,8 @@
  */
 package com.medical.controller;
 
+import javax.validation.constraints.NotNull;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -35,16 +37,18 @@ public class PolicyController {
 	private PolicyService policyService;
 
 	/**
-	 * 
-	 * This method is used for policy
+	 * This method is used for given policy number is available or not and after
+	 * this identify given policy number is valid or not based on aadhar number and
+	 * date of birth
 	 * 
 	 * @param PolicyRequestDto
 	 * @return PolicyResponseDto which returns userId,message, statusCode
-	 * @throws MedicalClaimException 
+	 * @throws MedicalClaimException
 	 */
-
 	@PostMapping("/policies")
-	public ResponseEntity<PolicyResponseDto> policy(@RequestBody PolicyRequestDto policyRequestDto) throws MedicalClaimException {
+
+	public ResponseEntity<PolicyResponseDto> policy(@NotNull @RequestBody PolicyRequestDto policyRequestDto)
+			throws MedicalClaimException {
 		lOGGER.info("inside policy controller");
 		return new ResponseEntity<>(policyService.claimService(policyRequestDto), HttpStatus.ACCEPTED);
 

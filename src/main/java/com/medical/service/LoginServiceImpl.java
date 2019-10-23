@@ -35,9 +35,9 @@ public class LoginServiceImpl implements LoginService {
 	 * credentials are correct or in correct
 	 * 
 	 * @param LoginDTO
-	 * 
 	 * @return LoginResponseDTO
 	 * @throws MedicalClaimException
+	 * 
 	 */
 	@Override
 	public LoginResponseDTO getAdminDetails(LoginDTO loginDTO) throws MedicalClaimException {

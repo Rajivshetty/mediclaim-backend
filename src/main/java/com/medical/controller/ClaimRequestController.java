@@ -42,6 +42,7 @@ public class ClaimRequestController {
 	 * @exception MedicalClaimException
 	 */
 	@PostMapping("/claims")
+
 	public ResponseEntity<ResponseDto> addClaim(@Valid @RequestBody ClaimDTO claimDTO) throws MedicalClaimException {
 
 		LOGGER.info("ClaimRequestController");

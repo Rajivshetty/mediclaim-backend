@@ -78,9 +78,13 @@ public class PolicyControllerTest {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * @throws MedicalClaimException 
+=======
+	 *  
+>>>>>>> c05b57257f3941649c80c33533ef9e2a59252e7e
 	 * @apiNote negative test case for Controller policy() method
-	 * @throws UserNotFound
+	 * @throws MedicalClaimException
 	 */
 	@Test(expected = MedicalClaimException.class)
 	public void testPolicyException() throws MedicalClaimException {

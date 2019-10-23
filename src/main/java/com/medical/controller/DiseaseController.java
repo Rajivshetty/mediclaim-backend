@@ -31,7 +31,7 @@ public class DiseaseController {
 	DiseaseService diseaseService;
 
 	/**
-	 * @author Abhishek C
+	 * 
 	 * @apiNote controller to fetch list of diseases
 	 * @return list of hospitals
 	 */
