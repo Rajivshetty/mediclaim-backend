@@ -98,8 +98,18 @@ public class ApproveServiceImplTest {
 
 	@Test
 	public void testClaimListElse() throws MedicalClaimException {
+		List<Claim> claimAppr=new ArrayList<>();
+		Claim claim = new Claim();
+		claim.setClaimId(1);
+		claim.setClaimNo(1234);
+		claim.setHospitalId(1);
+		claim.setDiseaseId(1);
+		claim.setAdmissionDate(LocalDate.of(2019, 10, 10));
+		claim.setDischargedDate(LocalDate.of(2019, 10, 13));
+		claim.setApprStatus(MedicalClaimConstants.APPROVED);
+		claimAppr.add(claim);
 
-		Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimList));
+		Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimAppr));
 
 		Mockito.when(diseaseRepo.findById(Mockito.anyInt())).thenReturn(Optional.of(disease));
 		Mockito.when(hospitalRepo.findById(Mockito.anyInt())).thenReturn(Optional.of(hospital));
@@ -107,6 +117,56 @@ public class ApproveServiceImplTest {
 		List<ClaimResDto> actualValue = approveServiceImpl.claimList(1);
 
 		assertEquals(claimResDtoList.size(), actualValue.size());
+
+	}
+
+	@Test(expected = MedicalClaimException.class)
+	public void testClaimListEmpty() throws MedicalClaimException {
+
+		// Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimList));
+
+		approveServiceImpl.claimList(222);
+
+	}
+	
+	@Test(expected = MedicalClaimException.class)
+	public void testClaimListPRAEmpty() throws MedicalClaimException {
+		
+		List<Claim> claimAppr=new ArrayList<>();
+		Claim claim = new Claim();
+		claim.setClaimId(1);
+		claim.setClaimNo(1234);
+		claim.setHospitalId(1);
+		claim.setDiseaseId(1);
+		claim.setAdmissionDate(LocalDate.of(2019, 10, 10));
+		claim.setDischargedDate(LocalDate.of(2019, 10, 13));
+		claim.setApprStatus("AAAA");
+		claimAppr.add(claim);
+
+		 Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimAppr));
+
+		approveServiceImpl.claimList(2);
+
+	}
+
+
+	@Test(expected = MedicalClaimException.class)
+	public void testClaimListPendingEmpty() throws MedicalClaimException {
+		
+		List<Claim> claimAppr=new ArrayList<>();
+		Claim claim = new Claim();
+		claim.setClaimId(1);
+		claim.setClaimNo(1234);
+		claim.setHospitalId(1);
+		claim.setDiseaseId(1);
+		claim.setAdmissionDate(LocalDate.of(2019, 10, 10));
+		claim.setDischargedDate(LocalDate.of(2019, 10, 13));
+		claim.setApprStatus(MedicalClaimConstants.APPROVED);
+		claimAppr.add(claim);
+
+		 Mockito.when(claimRepo.findAllByOrderByPatientName()).thenReturn(Optional.of(claimAppr));
+
+		approveServiceImpl.claimList(1);
 
 	}
 

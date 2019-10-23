@@ -50,8 +50,9 @@ public class ApproveServiceImpl implements ApproveService {
 
 	@Autowired
 	ClaimApprovalRepo claimApprovalRepo;
+	
+	List<Claim> claims = null;
 
-	List<Claim> claims=null;
 	
 	/**
 	 * this method returns the list of claim details based on the approverId
@@ -74,6 +75,9 @@ public class ApproveServiceImpl implements ApproveService {
 		
 
 		if (approverId.equals(MedicalClaimConstants.APPROVER_ID)) {
+		 claims = new ArrayList<>();
+
+		if (approverId .equals(MedicalClaimConstants.APPROVER_ID)) {
 			claims = claim.get().stream().filter(line -> line.getApprStatus().equals(MedicalClaimConstants.PENDING))
 					.collect(Collectors.toList());
 			if (claims.isEmpty()) {
@@ -101,7 +105,7 @@ public class ApproveServiceImpl implements ApproveService {
 			cl.setClaimId(c.getClaimId());
 			claimList.add(cl);
 		});
-
+		}
 		return claimList;
 	}
 
