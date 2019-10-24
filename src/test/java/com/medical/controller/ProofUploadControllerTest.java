@@ -35,7 +35,7 @@ public class ProofUploadControllerTest {
 
 	@Test
 	public void testSingleFileUpload() throws FileNotFoundException, IOException {
-		MultipartFile multipartFile = new MockMultipartFile("Net Core Basics.docx", new FileInputStream(new File("C://Users//user1//Desktop//mahesh//Net Core Basics.docx")));
+		MultipartFile multipartFile = new MockMultipartFile("Breach.docx", new FileInputStream(new File("C://Users//user1//Downloads//Breach.docx")));
 		Mockito.when(proofUploadService.proofUpload(Mockito.any(), Mockito.any()))
 				.thenReturn("You successfully uploaded");
 		ResponseEntity<String> actualValue = proofUploadController.singleFileUpload(multipartFile, redirectAttributes);

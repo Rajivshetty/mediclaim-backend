@@ -39,7 +39,7 @@ public class HospitaServiceImpl implements HospitalService {
 	@Override
 	public List<HospitalResponseDto> getHospitalList() {
 		LOGGER.info("inside hospital list");
-		List<Hospital> list = hospitalRepository.findAll();
+		List<Hospital> list = hospitalRepository.findAllByOrderByHospitalName();
 		if (list.isEmpty()) {
 			throw new HospitalNotFoundException(MedicalClaimConstants.HOSPITAL_NOT_FOUND);
 		}

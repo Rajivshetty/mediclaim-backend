@@ -66,7 +66,7 @@ public class DiseaseServiceImplTest {
 	 */
 	@Test
 	public void testGetDiseasesList() {
-		Mockito.when(diseaseRepository.findAll()).thenReturn(list);
+		Mockito.when(diseaseRepository.findAllByOrderByDiseaseName()).thenReturn(list);
 		diseases = diseaseServiceImpl.getDiseaseList();
 		assertNotNull(list);
 	}

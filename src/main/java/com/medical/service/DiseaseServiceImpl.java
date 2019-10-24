@@ -17,6 +17,7 @@ import com.medical.util.MedicalClaimConstants;
 
 /**
  * DiseaseServiceImpl used to fetch list of diseases
+ * 
  * @author Abhishek C
  * @version 1.0
  * @since 2019-10-21
@@ -31,13 +32,14 @@ public class DiseaseServiceImpl implements DiseaseService {
 
 	/**
 	 * getDiseaseList method is used to fetch list of diseases
+	 * 
 	 * @return list of hospitals
 	 * @throws DiseaseNotFoundException
 	 */
 	@Override
 	public List<DiseaseResponseDto> getDiseaseList() {
 		LOGGER.debug("DiseaseServiceImpl getDiseaseList()");
-		List<Disease> list = diseaseRepository.findAll();
+		List<Disease> list = diseaseRepository.findAllByOrderByDiseaseName();
 		if (list.isEmpty()) {
 			throw new DiseaseNotFoundException(MedicalClaimConstants.DISEASE_NOT_FOUND);
 		}

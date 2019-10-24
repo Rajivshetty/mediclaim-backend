@@ -50,7 +50,6 @@ public class LoginServiceImplTest {
 
 		LoginDTO loginDTO = new LoginDTO();
 		loginDTO.setAdminName("Mahesh");
-		;
 		loginDTO.setAdminPassword("mahesh");
 		LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
 		loginResponseDTO.setStatusCode(201);
@@ -61,4 +60,51 @@ public class LoginServiceImplTest {
 
 	}
 
+	@Test(expected = MedicalClaimException.class)
+	public void testGetAdminDetailsNegative() throws MedicalClaimException {
+
+		LoginDTO loginDTO = new LoginDTO();
+		loginDTO.setAdminName("");
+		loginDTO.setAdminPassword("");
+		LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+		loginResponseDTO.setStatusCode(201);
+		loginServiceImpl.getAdminDetails(loginDTO);
+
+	}
+
+	@Test(expected = MedicalClaimException.class)
+	public void testGetAdminDetailsRoleNegative() throws MedicalClaimException {
+
+		LoginDTO loginDTO = new LoginDTO();
+		loginDTO.setAdminName("Mahesh");
+		loginDTO.setAdminPassword("mahesh");
+		LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+		loginResponseDTO.setStatusCode(201);
+		loginServiceImpl.getAdminDetails(loginDTO);
+
+	}
+	
+	@Test(expected = MedicalClaimException.class)
+	public void testGetAdminDetailsPasswordEmptyNegative() throws MedicalClaimException {
+
+		LoginDTO loginDTO = new LoginDTO();
+		loginDTO.setAdminName("Mahesh");
+		loginDTO.setAdminPassword("");
+		LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+		loginResponseDTO.setStatusCode(201);
+		loginServiceImpl.getAdminDetails(loginDTO);
+
+	}
+	
+	@Test(expected = MedicalClaimException.class)
+	public void testGetAdminDetailsAdminNameEmptyNegative() throws MedicalClaimException {
+
+		LoginDTO loginDTO = new LoginDTO();
+		loginDTO.setAdminName("");
+		loginDTO.setAdminPassword("mahesh");
+		LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+		loginResponseDTO.setStatusCode(201);
+		loginServiceImpl.getAdminDetails(loginDTO);
+
+	}
 }

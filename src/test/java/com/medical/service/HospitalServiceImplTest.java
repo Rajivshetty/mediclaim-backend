@@ -55,14 +55,14 @@ public class HospitalServiceImplTest {
 	}
 
 	/**
-	 * <<<<<<< HEAD test case for GetHospitalList() method
+	 * test case for GetHospitalList() method
 	 * 
 	 * @param no parameters
 	 * @return list of hospitals
 	 */
 	@Test
 	public void testGetHospitalList() {
-		Mockito.when(hospitalRepository.findAll()).thenReturn(hospitals);
+		Mockito.when(hospitalRepository.findAllByOrderByHospitalName()).thenReturn(hospitals);
 		list = hospitalServiceImpl.getHospitalList();
 		assertNotNull(list);
 	}

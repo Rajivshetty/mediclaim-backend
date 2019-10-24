@@ -15,5 +15,8 @@ import com.medical.entity.Disease;
 public interface DiseaseRepository extends JpaRepository<Disease, Integer> {
 	
 	List<Disease> findAll();
+
+
+	List<Disease> findAllByOrderByDiseaseName();
 }
 
