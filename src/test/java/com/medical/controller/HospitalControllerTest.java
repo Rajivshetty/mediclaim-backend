@@ -22,12 +22,10 @@ import com.medical.dto.HospitalResponseDto;
 import com.medical.service.HospitalService;
 
 /**
- * <<<<<<< HEAD HospitalControllerTest is used to test HospitalController.class
  * 
  * @author Abhishek C
  *
- *         =======
- * @author Abhishek C >>>>>>> 770488ca8e65d327fc89718fa4754180cafc0c4f
+ *         
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = HospitalController.class)
