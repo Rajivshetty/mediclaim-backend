@@ -20,11 +20,13 @@ import com.medical.entity.Claim;
 import com.medical.entity.ClaimApproval;
 import com.medical.entity.Disease;
 import com.medical.entity.Hospital;
+import com.medical.entity.Role;
 import com.medical.exception.MedicalClaimException;
 import com.medical.repository.ClaimApprovalRepo;
-import com.medical.repository.ClaimRepo;
-import com.medical.repository.DiseaseRepo;
-import com.medical.repository.HospitalRepo;
+import com.medical.repository.ClaimRepository;
+import com.medical.repository.DiseaseRepository;
+import com.medical.repository.HospitalRepository;
+import com.medical.repository.RoleRepository;
 import com.medical.util.MedicalClaimConstants;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,16 +42,19 @@ import lombok.extern.slf4j.Slf4j;
 public class ApproveServiceImpl implements ApproveService {
 
 	@Autowired
-	ClaimRepo claimRepo;
+	ClaimRepository claimRepo;
 
 	@Autowired
-	DiseaseRepo diseaseRepo;
+	DiseaseRepository diseaseRepo;
 
 	@Autowired
-	HospitalRepo hospitalRepo;
+	HospitalRepository hospitalRepo;
 
 	@Autowired
 	ClaimApprovalRepo claimApprovalRepo;
+
+	@Autowired
+	RoleRepository roleRepo;
 
 	List<Claim> claims = null;
 
@@ -72,7 +77,11 @@ public class ApproveServiceImpl implements ApproveService {
 			throw new MedicalClaimException(MedicalClaimConstants.RECORD_NOT_FOUND);
 		}
 
-		if (approverId.equals(MedicalClaimConstants.APPROVER_ID)) {
+		Optional<Role> role = roleRepo.findById(approverId);
+		if (!role.isPresent()) {
+			throw new MedicalClaimException(MedicalClaimConstants.NO_USER);
+		}
+		if (role.get().getRoles().equals(MedicalClaimConstants.Jr)) {
 			claims = claim.get().stream().filter(line -> line.getApprStatus().equals(MedicalClaimConstants.PENDING))
 					.collect(Collectors.toList());
 			if (claims.isEmpty()) {

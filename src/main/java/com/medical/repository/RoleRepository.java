@@ -3,9 +3,9 @@ package com.medical.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.medical.entity.Disease;
+import com.medical.entity.Role;
 
 @Repository
-public interface DiseaseRepo extends JpaRepository<Disease, Integer>{
+public interface RoleRepository extends JpaRepository<Role, Integer>{
 
 }

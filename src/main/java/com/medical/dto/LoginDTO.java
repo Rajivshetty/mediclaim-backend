@@ -5,6 +5,8 @@ package  com.medical.dto;
  */
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +22,10 @@ public class LoginDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	@NotNull
 	private String adminName;
+	@NotNull
 	private String adminPassword;
 
 

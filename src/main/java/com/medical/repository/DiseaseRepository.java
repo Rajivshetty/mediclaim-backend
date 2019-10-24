@@ -13,10 +13,6 @@ import com.medical.entity.Disease;
 
 @Repository
 public interface DiseaseRepository extends JpaRepository<Disease, Integer> {
-	
-	List<Disease> findAll();
-
 
 	List<Disease> findAllByOrderByDiseaseName();
 }
-

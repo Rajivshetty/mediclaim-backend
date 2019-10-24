@@ -41,7 +41,7 @@ public class LoginController {
 	 * @throws MedicalClaimException 
 	 */
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponseDTO> getAdmin(@Valid @NotNull @RequestBody LoginDTO loginDTO) throws MedicalClaimException {
+	public ResponseEntity<LoginResponseDTO> getAdmin(@Valid @RequestBody LoginDTO loginDTO) throws MedicalClaimException {
 		log.debug("LoginController.class");
 		return new ResponseEntity<>(loginService.getAdminDetails(loginDTO), HttpStatus.OK);
 

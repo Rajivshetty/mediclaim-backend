@@ -10,8 +10,6 @@ import com.medical.entity.Hospital;
 @Repository
 public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
 	
-	List<Hospital> findAll();
-
 	List<Hospital> findAllByOrderByHospitalName();
 
 }

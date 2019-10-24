@@ -25,22 +25,22 @@ import com.medical.entity.Disease;
 import com.medical.entity.Hospital;
 import com.medical.exception.MedicalClaimException;
 import com.medical.repository.ClaimApprovalRepo;
-import com.medical.repository.ClaimRepo;
-import com.medical.repository.DiseaseRepo;
-import com.medical.repository.HospitalRepo;
+import com.medical.repository.ClaimRepository;
+import com.medical.repository.DiseaseRepository;
+import com.medical.repository.HospitalRepository;
 import com.medical.util.MedicalClaimConstants;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ApproveServiceImplTest {
 
 	@Mock
-	ClaimRepo claimRepo;
+	ClaimRepository claimRepo;
 
 	@Mock
-	DiseaseRepo diseaseRepo;
+	DiseaseRepository diseaseRepo;
 
 	@Mock
-	HospitalRepo hospitalRepo;
+	HospitalRepository hospitalRepo;
 
 	@Mock
 	ClaimApprovalRepo claimApprovalRepo;

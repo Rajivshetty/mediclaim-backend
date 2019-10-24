@@ -1,4 +1,7 @@
 package com.medical.dto;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * author mahesh
  */
@@ -14,8 +17,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ApproveReqDto {
+	@NotNull
 	private Integer approverId;
+	@NotNull
 	private Integer claimId;
+	@NotNull
 	private String status;
+	@NotNull
 	private String comment;
 }

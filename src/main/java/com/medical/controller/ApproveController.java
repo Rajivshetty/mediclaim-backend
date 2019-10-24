@@ -49,6 +49,7 @@ public class ApproveController {
 
 	@GetMapping("/approvers/{approverId}/claims")
 	public ResponseEntity<List<ClaimResDto>> claimList(@Valid @NotNull @PathVariable Integer approverId) throws MedicalClaimException {
+		
 		log.debug("claimList method in ApproveController");
 		return new ResponseEntity<>(approveService.claimList(approverId), HttpStatus.OK);
 	}
@@ -63,7 +64,7 @@ public class ApproveController {
 	 */
 
 	@PostMapping("/approvers")
-	public ResponseEntity<ApproveResDto> approveClaim(@Valid @NotNull @RequestBody ApproveReqDto approveReqDto)
+	public ResponseEntity<ApproveResDto> approveClaim(@Valid @RequestBody ApproveReqDto approveReqDto)
 			throws MedicalClaimException {
 
 		log.debug("approveClaim method in ApproveController");
