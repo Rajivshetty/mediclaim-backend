@@ -22,7 +22,12 @@ import com.medical.dto.DiseaseResponseDto;
 import com.medical.service.DiseaseService;
 
 /**
+ * <<<<<<< HEAD DiseaseControllerTest is used to test DiseaseController.class
+ * 
  * @author Abhishek C
+ *
+ *         =======
+ * @author Abhishek C >>>>>>> 770488ca8e65d327fc89718fa4754180cafc0c4f
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = DiseaseController.class)
@@ -51,14 +56,30 @@ public class DiseaseControllerTest {
 		list.add(responseDto);
 	}
 
+	/**
+	 * testGetDiseasesList is used to test getDiseaseList() method in
+	 * DiseaseController.class
+	 * 
+	 * @Param no parameters
+	 * @return nothing
+	 * @throws JsonProcessingException
+	 */
 	@Test
-	public void testGetHospitals() throws JsonProcessingException, Exception {
+	public void testGetDiseasesList() throws JsonProcessingException, Exception {
 		Mockito.when(diseaseService.getDiseaseList()).thenReturn(list);
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/diseases/").contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(list))).andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
-	public static String asJsonString(final Object obj) throws JsonProcessingException {
-		return new ObjectMapper().writeValueAsString(obj);
+	/**
+	 * Method that can be used to serialize any Java value as a String
+	 * 
+	 * @Param object parameter
+	 * @return String
+	 * @Throws JsonProcessingException
+	 */
+	public static String asJsonString(final Object object) throws JsonProcessingException {
+		return new ObjectMapper().writeValueAsString(object);
+
 	}
 }

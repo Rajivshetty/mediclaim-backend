@@ -4,7 +4,6 @@
 package com.medical.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -93,50 +92,43 @@ public class PolicyServiceImplTest {
 	@Test(expected = MedicalClaimException.class)
 	public void testClaimServiceException() throws MedicalClaimException {
 
-		//Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenThrow(MedicalClaimException.class);
-		PolicyResponseDto policyResponse = policyServiceImpl.claimService(policyRequestDto);
-		assertNotNull(policyResponse);
+		// Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenThrow(MedicalClaimException.class);
+		policyServiceImpl.claimService(policyRequestDto);
 
 	}
-	
+
 	@Test(expected = MedicalClaimException.class)
 	public void testClaimServiceExceptionAadhar() throws MedicalClaimException {
-	
+
 		User user = new User();
 		user.setUserId(1);
 		user.setAadharNo(102l);
 		user.setDob(LocalDate.now());
 		user.setPolicyNo(10);
-		PolicyRequestDto policyRequestDto=new PolicyRequestDto();
+		PolicyRequestDto policyRequestDto = new PolicyRequestDto();
 		policyRequestDto.setPolicyNo(10);
 		policyRequestDto.setAadharNo(123);
 		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenReturn(Optional.of(user));
-		
-		
+
 		policyServiceImpl.claimService(policyRequestDto);
-	
-		
 
 	}
-	
+
 	@Test(expected = MedicalClaimException.class)
 	public void testClaimServiceExceptionDob() throws MedicalClaimException {
-	
+
 		User user = new User();
 		user.setUserId(1);
 		user.setAadharNo(102l);
 		user.setDob(LocalDate.now());
 		user.setPolicyNo(10);
-		PolicyRequestDto policyRequestDto=new PolicyRequestDto();
+		PolicyRequestDto policyRequestDto = new PolicyRequestDto();
 		policyRequestDto.setPolicyNo(10);
 		policyRequestDto.setAadharNo(102l);
 		policyRequestDto.setDob(LocalDate.of(2001, 02, 01));
 		Mockito.when(userRepository.findByPolicyNo(Mockito.anyInt())).thenReturn(Optional.of(user));
-		
-		
+
 		policyServiceImpl.claimService(policyRequestDto);
-	
-		
 
 	}
 
