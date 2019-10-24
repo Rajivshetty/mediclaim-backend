@@ -3,10 +3,9 @@
  */
 package com.medical.controller;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.medical.dto.PolicyRequestDto;
 import com.medical.dto.PolicyResponseDto;
 import com.medical.exception.MedicalClaimException;
@@ -46,7 +46,7 @@ public class PolicyController {
 	 * @throws MedicalClaimException
 	 */
 	@PostMapping("/policies")
-	public ResponseEntity<PolicyResponseDto> policy(@NotNull @RequestBody PolicyRequestDto policyRequestDto)
+	public ResponseEntity<PolicyResponseDto> policy(@Valid @RequestBody PolicyRequestDto policyRequestDto)
 			throws MedicalClaimException {
 		lOGGER.info("inside policy controller");
 		return new ResponseEntity<>(policyService.claimService(policyRequestDto), HttpStatus.ACCEPTED);
