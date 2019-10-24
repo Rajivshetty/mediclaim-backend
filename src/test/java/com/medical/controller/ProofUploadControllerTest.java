@@ -37,7 +37,7 @@ public class ProofUploadControllerTest {
 	@Test
 	public void testSingleFileUpload() throws FileNotFoundException, IOException {
 
-		String fileUrl = "C:\\\\Users\\\\User1\\\\Desktop.open.txt";
+		String fileUrl = "C:\\\\Users\\\\User1\\\\Desktop.akash.txt";
 		InputStream is = proofUploadController.getClass().getClassLoader().getResourceAsStream(fileUrl);
 		MockMultipartFile mockMultipartFile = new MockMultipartFile("file", "excel.txt", "multipart/form-data", is);
 		Mockito.when(proofUploadService.proofUpload(Mockito.any(), Mockito.any()))
