@@ -59,7 +59,6 @@ public class DiseaseControllerTest {
 	/**
 	 * testGetDiseasesList is used to test getDiseaseList() method in
 	 * DiseaseController.class
-	 * 
 	 * @Param no parameters
 	 * @return nothing
 	 * @throws JsonProcessingException
@@ -73,7 +72,6 @@ public class DiseaseControllerTest {
 
 	/**
 	 * Method that can be used to serialize any Java value as a String
-	 * 
 	 * @Param object parameter
 	 * @return String
 	 * @Throws JsonProcessingException

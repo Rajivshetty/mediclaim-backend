@@ -57,7 +57,6 @@ public class HospitalControllerTest {
 	/**
 	 * testGetHospitals is used to test getHospitalList() method in
 	 * HospitalController.class
-	 * 
 	 * @Param no parameters
 	 * @return nothing
 	 * @throws JsonProcessingException
@@ -72,7 +71,6 @@ public class HospitalControllerTest {
 
 	/**
 	 * Method that can be used to serialize any Java value as a String
-	 * 
 	 * @Param object parameter
 	 * @return String
 	 * @Throws JsonProcessingException

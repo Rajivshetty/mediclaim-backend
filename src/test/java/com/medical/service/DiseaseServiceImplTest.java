@@ -22,7 +22,6 @@ import com.medical.repository.DiseaseRepository;
 
 /**
  * Unit test case for DiseaseServiceImpl service
- * 
  * @author Abhishek C
  */
 
@@ -58,10 +57,9 @@ public class DiseaseServiceImplTest {
 	}
 
 	/**
-	 * 
-	 * @author Abhishek C test case for testGetDiseasesList() method
-	 * 
-	 * @apiNote test case for testGetDiseasesList() method
+	 * test case for testGetDiseasesList() method
+	 * @param no parameters
+	 * @return nothing
 	 * @return list of diseases
 	 */
 	@Test
@@ -72,12 +70,9 @@ public class DiseaseServiceImplTest {
 	}
 
 	/**
-	 * <<<<<<< HEAD negative test case for GetDiseasesList() method
-	 * 
+	 * negative test case for GetHospitalList() method
 	 * @param no parameters
-	 * @return nothing =======
-	 * @apiNote negative test case for GetHospitalList() method >>>>>>>
-	 *          770488ca8e65d327fc89718fa4754180cafc0c4f
+	 * @return nothing
 	 * @throws HospitalNotFoundException
 	 */
 	@Test(expected = DiseaseNotFoundException.class)
