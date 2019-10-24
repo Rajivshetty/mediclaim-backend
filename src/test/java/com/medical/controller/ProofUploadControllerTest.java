@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,20 +36,23 @@ public class ProofUploadControllerTest {
 
 	@Test
 	public void testSingleFileUpload() throws FileNotFoundException, IOException {
-		MultipartFile multipartFile = new MockMultipartFile("Net Core Basics.docx", new FileInputStream(new File("C://Users//user1//Desktop//mahesh//Net Core Basics.docx")));
+		String fileUrl = "C:\\\\Users\\\\User1\\\\Desktop.akash.txt";
+		InputStream is = proofUploadController.getClass().getClassLoader().getResourceAsStream(fileUrl);
+		MockMultipartFile mockMultipartFile = new MockMultipartFile("file", "excel.txt", "multipart/form-data", is);
 		Mockito.when(proofUploadService.proofUpload(Mockito.any(), Mockito.any()))
 				.thenReturn("You successfully uploaded");
-		ResponseEntity<String> actualValue = proofUploadController.singleFileUpload(multipartFile, redirectAttributes);
-		assertEquals(200,actualValue.getStatusCodeValue());
+		ResponseEntity<String> actualValue = proofUploadController.singleFileUpload(mockMultipartFile, redirectAttributes);
+		assertEquals(200, actualValue.getStatusCodeValue());
 	}
-	
+
 	@Test(expected = FileNotFoundException.class)
 	public void testSingleFileUploadNegative() throws FileNotFoundException, IOException {
-		MultipartFile multipartFile = new MockMultipartFile("Net.docx", new FileInputStream(new File("C://Users//user1//Desktop//mahesh//Net.docx")));
+		MultipartFile multipartFile = new MockMultipartFile("Net.docx",
+				new FileInputStream(new File("C://Users//user1//Desktop//mahesh//Net.docx")));
 		Mockito.when(proofUploadService.proofUpload(Mockito.any(), Mockito.any()))
 				.thenReturn("You successfully uploaded");
 		ResponseEntity<String> actualValue = proofUploadController.singleFileUpload(multipartFile, redirectAttributes);
-		assertEquals(200,actualValue.getStatusCodeValue());
+		assertEquals(200, actualValue.getStatusCodeValue());
 	}
 
 }

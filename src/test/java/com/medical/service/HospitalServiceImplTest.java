@@ -55,7 +55,6 @@ public class HospitalServiceImplTest {
 	}
 
 	/**
-	 * <<<<<<< HEAD test case for GetHospitalList() method
 	 * 
 	 * @param no parameters
 	 * @return list of hospitals
