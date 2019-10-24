@@ -57,7 +57,7 @@ public class MedicalClaimConstants {
 	public static final String INVALID_AADHAR_NUMBER = "Please Check your Aadhar Number";
 	public static final String INVALID_DOB_NUMBER = "Please Check your Date-of-birth";
 
-	public static String proofUpload(MultipartFile file, RedirectAttributes redirectAttributes) {
+	public  static  String proofUpload(MultipartFile file, RedirectAttributes redirectAttributes) {
 
 		if (file.isEmpty()) {
 			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");

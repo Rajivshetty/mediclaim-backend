@@ -31,9 +31,6 @@ public class PolicyServiceImpl implements PolicyService {
 
 	/**
 	 * This method is intended to user policy with proper credentials
-	 *
-	 * @param PolicyRequestDto
-	 *            is the input object which have policyNo, aadharNo,DOB
 	 * @param PolicyRequestDto is the input object which have policyNo, aadharNo,DOB
 	 * @return PolicyResponseDto which returns userId,message, statusCode
 	 * @throws MedicalClaimException
@@ -44,6 +41,7 @@ public class PolicyServiceImpl implements PolicyService {
 
 		lOGGER.info("In Policy service ");
 		Optional<User> user = userRepository.findByPolicyNo(policyRequestDto.getPolicyNo());
+		
 		if (!user.isPresent()) {
 			throw new MedicalClaimException(MedicalClaimConstants.USER_NOT_EXIST);
 		}

@@ -48,5 +48,5 @@ public class LoginControllerTest {
 		ResponseEntity<LoginResponseDTO> actualValue = loginController.getAdmin(loginDTO);
 		assertEquals(loginResponseDTO.getStatusCode(), actualValue.getBody().getStatusCode());
 	}
-
+	
 }

@@ -77,9 +77,9 @@ public class AddClaimServiceImpl implements AddClaimService {
 						claim.getUserId(), claim.getAdmissionDate(), claim.getDischargedDate(), claim.getClaimAmount(),
 						disease.getLimitAmount());
 				if ((claim.getAdmissionDate().isBefore(claim.getDischargedDate()))
-						|| (claim.getDischargedDate().isBefore(claim.getAdmissionDate()))
-						|| (claim.getAdmissionDate().isAfter(LocalDate.now()))
-						|| (claim.getDischargedDate().isAfter(LocalDate.now()))) {
+						|| (claim.getDischargedDate().isAfter(claim.getAdmissionDate()))
+						|| (claim.getAdmissionDate().isBefore(LocalDate.now()))
+						|| (claim.getDischargedDate().isBefore(LocalDate.now()))) {
 
 					if (claim.getClaimAmount() <= disease.getLimitAmount()) {
 
