@@ -34,7 +34,7 @@ public class LoginController {
 	LoginService loginService;
 
 	/**
-	 * This method is used for Admin login to approve claim
+	 * This method is used for admin login to approve claim
 	 * 
 	 * @param LoginDTO
 	 * @return LoginResponseDTO

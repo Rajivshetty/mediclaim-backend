@@ -49,7 +49,7 @@ public class ApproveController {
 
 	@GetMapping("/approvers/{approverId}/claims")
 	public ResponseEntity<List<ClaimResDto>> claimList(@Valid @NotNull @PathVariable Integer approverId) throws MedicalClaimException {
-		log.info("claimList method in ApproveController");
+		log.debug("claimList method in ApproveController");
 		return new ResponseEntity<>(approveService.claimList(approverId), HttpStatus.OK);
 	}
 

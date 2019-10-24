@@ -1,5 +1,7 @@
 package com.medical.dto;
-
+/**
+ * author mahesh
+ */
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
