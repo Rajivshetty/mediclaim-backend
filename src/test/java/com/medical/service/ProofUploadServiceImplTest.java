@@ -46,7 +46,7 @@ public class ProofUploadServiceImplTest {
 	public void testProofUploadNegative() throws FileNotFoundException, IOException {
 		MultipartFile multipartFile = new MockMultipartFile("",
 				new FileInputStream(new File("C://Users//user1//Desktop//mahesh//")));
-		Mockito.when(medicalClaimConstants.proofUpload(Mockito.any(), Mockito.any()))
+		Mockito.when(MedicalClaimConstants.proofUpload(Mockito.any(), Mockito.any()))
 				.thenReturn("You successfully uploaded");
 		String actualValue = proofUploadServiceImpl.proofUpload(multipartFile, redirectAttributes);
 		assertEquals("You successfully uploaded", actualValue);
