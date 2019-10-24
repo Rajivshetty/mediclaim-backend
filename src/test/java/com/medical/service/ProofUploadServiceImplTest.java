@@ -30,25 +30,15 @@ public class ProofUploadServiceImplTest {
 
 	RedirectAttributes redirectAttributes = null;
 
-	/*
-	 * @Test public void testProofUpload() throws FileNotFoundException, IOException
-	 * { MultipartFile multipartFile = new MockMultipartFile("Selenium Code.docx",
-	 * new FileInputStream(new
-	 * File("C://Users//user1//Desktop//mahesh//Selenium Code.docx")));
-	 * Mockito.when(MedicalClaimConstants.proofUpload(multipartFile,
-	 * redirectAttributes)) .thenReturn("You successfully uploaded"); String
-	 * actualValue = proofUploadServiceImpl.proofUpload(multipartFile,
-	 * redirectAttributes); assertEquals("You successfully uploaded", actualValue);
-	 * }
-	 */
-
 	@Test(expected = FileNotFoundException.class)
 	public void testProofUploadNegative() throws FileNotFoundException, IOException {
+
 		MultipartFile multipartFile = new MockMultipartFile("",
 				new FileInputStream(new File("C://Users//user1//Desktop//mahesh//")));
 		Mockito.when(MedicalClaimConstants.proofUpload(Mockito.any(), Mockito.any()))
 				.thenReturn("You successfully uploaded");
 		String actualValue = proofUploadServiceImpl.proofUpload(multipartFile, redirectAttributes);
 		assertEquals("You successfully uploaded", actualValue);
+
 	}
 }

@@ -144,7 +144,7 @@ public class AddClaimServiceImplTest {
 	}
 
 	@Test(expected = MedicalClaimException.class)
-	public void addClaimAmountTest() throws MedicalClaimException {
+	public void testAddClaimAmount() throws MedicalClaimException {
 
 		Disease disease = new Disease();
 		disease.setDiseaseId(1);
