@@ -33,8 +33,6 @@ public class HospitalController {
 	HospitalService hospitalService;
 
 	/**
-	 * 
-	 * 
 	 * @apiNote getHospitals method is used to fetch list of hospitals
 	 * @param no parameters
 	 * @return list of hospitals
